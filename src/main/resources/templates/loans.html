@@ -1,0 +1,36 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="utf-8"><title>Loans</title></head>
+<body>
+<h2>Borrow / Return</h2>
+
+<h3>Borrow</h3>
+<form method="post" action="/borrow">
+    <input name="bookId" placeholder="Book ID" required>
+    <input name="memberId" placeholder="Member ID (U-3)" required>
+    <input name="days" type="number" min="1" value="7" required>
+    <button type="submit">Borrow</button>
+</form>
+
+<h3>Return</h3>
+<form method="post" action="/return">
+    <input name="loanId" placeholder="Loan ID (LN-1)" required>
+    <button type="submit">Return</button>
+</form>
+
+<h3>Loan Records</h3>
+<table border="1" cellpadding="6">
+    <tr><th>Loan ID</th><th>Book ID</th><th>Member ID</th><th>Borrow</th><th>Due</th><th>Returned</th></tr>
+    <tr th:each="l : ${loans}">
+        <td th:text="${l.loanId}"></td>
+        <td th:text="${l.bookId}"></td>
+        <td th:text="${l.memberId}"></td>
+        <td th:text="${l.borrowDate}"></td>
+        <td th:text="${l.dueDate}"></td>
+        <td th:text="${l.returnDate == null ? '-' : l.returnDate}"></td>
+    </tr>
+</table>
+
+<p><a href="/">Back to Books</a></p>
+</body>
+</html>

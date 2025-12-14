@@ -1,0 +1,17 @@
+/Users/chelsearose/Downloads/libraryms/src/main/java/com/usc/libraryms/LibrarymsApplication.java
+/Users/chelsearose/Downloads/libraryms/src/main/java/com/usc/libraryms/model/Admin.java
+/Users/chelsearose/Downloads/libraryms/src/main/java/com/usc/libraryms/model/Book.java
+/Users/chelsearose/Downloads/libraryms/src/main/java/com/usc/libraryms/model/Librarian.java
+/Users/chelsearose/Downloads/libraryms/src/main/java/com/usc/libraryms/model/Loan.java
+/Users/chelsearose/Downloads/libraryms/src/main/java/com/usc/libraryms/model/Member.java
+/Users/chelsearose/Downloads/libraryms/src/main/java/com/usc/libraryms/model/Role.java
+/Users/chelsearose/Downloads/libraryms/src/main/java/com/usc/libraryms/model/User.java
+/Users/chelsearose/Downloads/libraryms/src/main/java/com/usc/libraryms/repo/BookRepository.java
+/Users/chelsearose/Downloads/libraryms/src/main/java/com/usc/libraryms/repo/LoanRepository.java
+/Users/chelsearose/Downloads/libraryms/src/main/java/com/usc/libraryms/repo/UserRepository.java
+/Users/chelsearose/Downloads/libraryms/src/main/java/com/usc/libraryms/service/FinePolicy.java
+/Users/chelsearose/Downloads/libraryms/src/main/java/com/usc/libraryms/service/LibraryService.java
+/Users/chelsearose/Downloads/libraryms/src/main/java/com/usc/libraryms/service/PesoFinePolicy.java
+/Users/chelsearose/Downloads/libraryms/src/main/java/com/usc/libraryms/web/AuthController.java
+/Users/chelsearose/Downloads/libraryms/src/main/java/com/usc/libraryms/web/BookController.java
+/Users/chelsearose/Downloads/libraryms/src/main/java/com/usc/libraryms/web/LoanController.java
