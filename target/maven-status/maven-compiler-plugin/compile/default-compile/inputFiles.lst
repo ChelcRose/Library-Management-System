@@ -1,4 +1,6 @@
 /Users/chelsearose/Downloads/libraryms/src/main/java/com/usc/libraryms/LibrarymsApplication.java
+/Users/chelsearose/Downloads/libraryms/src/main/java/com/usc/libraryms/config/DataLoader.java
+/Users/chelsearose/Downloads/libraryms/src/main/java/com/usc/libraryms/config/SecurityConfig.java
 /Users/chelsearose/Downloads/libraryms/src/main/java/com/usc/libraryms/model/Admin.java
 /Users/chelsearose/Downloads/libraryms/src/main/java/com/usc/libraryms/model/Book.java
 /Users/chelsearose/Downloads/libraryms/src/main/java/com/usc/libraryms/model/Librarian.java
@@ -14,4 +16,6 @@
 /Users/chelsearose/Downloads/libraryms/src/main/java/com/usc/libraryms/service/PesoFinePolicy.java
 /Users/chelsearose/Downloads/libraryms/src/main/java/com/usc/libraryms/web/AuthController.java
 /Users/chelsearose/Downloads/libraryms/src/main/java/com/usc/libraryms/web/BookController.java
+/Users/chelsearose/Downloads/libraryms/src/main/java/com/usc/libraryms/web/DashboardController.java
+/Users/chelsearose/Downloads/libraryms/src/main/java/com/usc/libraryms/web/HomeController.java
 /Users/chelsearose/Downloads/libraryms/src/main/java/com/usc/libraryms/web/LoanController.java

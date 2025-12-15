@@ -2,33 +2,39 @@ package com.usc.libraryms.model;
 
 import jakarta.persistence.*;
 
-@MappedSuperclass
+@Entity
+@Table(name = "users")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "role")
 public abstract class User {
+
     @Id
+    @Column(name = "user_id")
     protected String userId;
 
     protected String name;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
     protected String username;
 
-    protected String passwordHash;
+    protected String password;
 
     protected User() {}
 
-    protected User(String userId, String name, String username, String passwordHash) {
-        this.userId = userId;
+    protected User(String id, String name, String username, String password) {
+        this.userId = id;
         this.name = name;
         this.username = username;
-        this.passwordHash = passwordHash;
+        this.password = password;
     }
 
-    public String getUserId() { return userId; }
-    public String getName() { return name; }
-    public String getUsername() { return username; }
+    public String getUsername() {
+        return username;
+    }
 
-    public void setName(String name) { this.name = name; }
-    public boolean verifyPassword(String raw) { return passwordHash != null && passwordHash.equals(raw); }
+    public String getPassword() {
+        return password;
+    }
 
-    public abstract Role getRole(); // polymorphism hook
+    public abstract Role getRole();
 }

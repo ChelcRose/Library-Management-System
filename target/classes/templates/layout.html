@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Library MS</title>
+</head>
+<body>
+
+<header style="display:flex;justify-content:space-between;align-items:center">
+    <h2>📚 Library Management System</h2>
+
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">Logout</button>
+    </form>
+</header>
+
+<hr>
+
+<main th:fragment="layout(content)">
+    <div th:replace="${content}"></div>
+</main>
+
+</body>
+</html>

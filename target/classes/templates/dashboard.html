@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      th:replace="~{layout :: layout(~{::section})}">
+<section>
+
+  <h2>Welcome to the Library Dashboard</h2>
+  <p>You are logged in as: <strong sec:authentication="name"></strong></p>
+
+  <hr>
+
+  <!-- STUDENT -->
+  <div sec:authorize="hasRole('MEMBER')">
+    <h3>📖 Student Options</h3>
+    <ul>
+      <li><a href="/loans">Borrow / Return Books</a></li>
+    </ul>
+  </div>
+
+  <!-- LIBRARIAN -->
+  <div sec:authorize="hasRole('LIBRARIAN')">
+    <h3>📚 Librarian Options</h3>
+    <ul>
+      <li><a href="/books">Manage Books</a></li>
+      <li><a href="/loans">Borrow / Return</a></li>
+    </ul>
+  </div>
+
+  <!-- ADMIN -->
+  <div sec:authorize="hasRole('ADMIN')">
+    <h3>🛠 Administrator Options</h3>
+    <ul>
+      <li><a href="/books">Manage Books</a></li>
+      <li><a href="/loans">View Loans</a></li>
+      <li><a href="/admin/users">Manage Users</a></li>
+    </ul>
+  </div>
+
+</section>
+</html>

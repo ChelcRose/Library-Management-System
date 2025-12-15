@@ -1,42 +1,46 @@
-<!doctype html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head><meta charset="utf-8"><title>Books</title></head>
-<body>
-<h2>Library Management System - Books</h2>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout :: layout(~{::section})}">
+<section>
 
-<form method="get" action="/">
-    <input name="q" th:value="${q}" placeholder="Search title/author/category">
-    <button type="submit">Search</button>
-    <a href="/">Reset</a>
-</form>
+    <h2>Books</h2>
 
-<h3>Add Book</h3>
-<form method="post" action="/books" th:object="${newBook}">
-    <input th:field="*{id}" placeholder="ID (B-101)" required>
-    <input th:field="*{title}" placeholder="Title" required>
-    <input th:field="*{author}" placeholder="Author" required>
-    <input th:field="*{category}" placeholder="Category" required>
-    <input th:field="*{totalCopies}" type="number" min="1" placeholder="Total copies" required>
-    <button type="submit">Add</button>
-</form>
+    <form method="get" action="/books">
+        <input name="q" th:value="${q}" placeholder="Search title / author / category">
+        <button type="submit">Search</button>
+        <a href="/books">Reset</a>
+    </form>
 
-<h3>Book List</h3>
-<table border="1" cellpadding="6">
-    <tr><th>ID</th><th>Title</th><th>Author</th><th>Category</th><th>Avail/Total</th><th>Action</th></tr>
-    <tr th:each="b : ${books}">
-        <td th:text="${b.id}"></td>
-        <td th:text="${b.title}"></td>
-        <td th:text="${b.author}"></td>
-        <td th:text="${b.category}"></td>
-        <td th:text="${b.availableCopies + '/' + b.totalCopies}"></td>
-        <td>
-            <form th:action="@{'/books/' + ${b.id} + '/delete'}" method="post">
-                <button type="submit">Delete</button>
-            </form>
-        </td>
-    </tr>
-</table>
+    <h3>Add Book</h3>
+    <form method="post" action="/books" th:object="${newBook}">
+        <input th:field="*{id}" placeholder="ID" required>
+        <input th:field="*{title}" placeholder="Title" required>
+        <input th:field="*{author}" placeholder="Author" required>
+        <input th:field="*{category}" placeholder="Category" required>
+        <input th:field="*{totalCopies}" type="number" min="1" required>
+        <button type="submit">Add</button>
+    </form>
 
-<p><a href="/loans">Go to Borrow/Return</a></p>
-</body>
+    <h3>Book List</h3>
+    <table border="1">
+        <tr>
+            <th>ID</th><th>Title</th><th>Author</th>
+            <th>Category</th><th>Avail/Total</th><th>Action</th>
+        </tr>
+
+        <tr th:each="b : ${books}">
+            <td th:text="${b.id}"></td>
+            <td th:text="${b.title}"></td>
+            <td th:text="${b.author}"></td>
+            <td th:text="${b.category}"></td>
+            <td th:text="${b.availableCopies + '/' + b.totalCopies}"></td>
+            <td>
+                <form th:action="@{'/books/' + ${b.id} + '/delete'}" method="post">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+</section>
 </html>
