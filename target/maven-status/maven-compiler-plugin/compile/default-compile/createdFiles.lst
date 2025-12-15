@@ -12,11 +12,14 @@ com/usc/libraryms/model/Member.class
 com/usc/libraryms/service/FinePolicy.class
 com/usc/libraryms/repo/BookRepository.class
 com/usc/libraryms/repo/UserRepository.class
+com/usc/libraryms/web/dto/RegisterForm.class
 com/usc/libraryms/config/SecurityConfig.class
+com/usc/libraryms/web/RegisterController.class
 com/usc/libraryms/web/LoanController.class
 com/usc/libraryms/web/BookController.class
 com/usc/libraryms/service/LibraryService.class
 com/usc/libraryms/service/PesoFinePolicy.class
+com/usc/libraryms/web/AdminController$1.class
 com/usc/libraryms/web/AdminController.class
 com/usc/libraryms/model/Librarian.class
 com/usc/libraryms/web/DashboardController.class
