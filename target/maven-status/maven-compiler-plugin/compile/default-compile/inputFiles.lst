@@ -15,6 +15,7 @@
 /Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/service/FinePolicy.java
 /Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/service/LibraryService.java
 /Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/service/PesoFinePolicy.java
+/Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/web/AdminController.java
 /Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/web/AuthController.java
 /Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/web/BookController.java
 /Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/web/DashboardController.java

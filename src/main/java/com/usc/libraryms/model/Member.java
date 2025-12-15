@@ -8,5 +8,5 @@ import jakarta.persistence.Entity;
 public class Member extends User {
     public Member() {}
     public Member(String id, String n, String u, String p) { super(id,n,u,p); }
-    @Override public Role getRole() { return Role.MEMBER; }
+    @Override protected Role getRoleInternal() { return Role.MEMBER; }
 }

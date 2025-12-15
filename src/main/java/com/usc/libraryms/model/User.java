@@ -28,13 +28,15 @@ public abstract class User {
         this.password = password;
     }
 
-    public String getUsername() {
-        return username;
-    }
+    // ✅ ADD THESE GETTERS
+    public String getUserId() { return userId; }
+    public String getName() { return name; }
+    public Role getRole() { return getRoleInternal(); }
 
-    public String getPassword() {
-        return password;
-    }
+    // keep existing
+    public String getUsername() { return username; }
+    public String getPassword() { return password; }
 
-    public abstract Role getRole();
+    // ✅ change your subclasses to override this instead
+    protected abstract Role getRoleInternal();
 }

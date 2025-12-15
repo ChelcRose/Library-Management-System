@@ -8,5 +8,5 @@ import jakarta.persistence.Entity;
 public class Librarian extends User {
     public Librarian() {}
     public Librarian(String id, String n, String u, String p) { super(id,n,u,p); }
-    @Override public Role getRole() { return Role.LIBRARIAN; }
+    @Override protected Role getRoleInternal() { return Role.LIBRARIAN; }
 }

@@ -8,5 +8,5 @@ import jakarta.persistence.Entity;
 public class Admin extends User {
     public Admin() {}
     public Admin(String id, String n, String u, String p) { super(id,n,u,p); }
-    @Override public Role getRole() { return Role.ADMIN; }
+    @Override protected Role getRoleInternal() { return Role.ADMIN; }
 }

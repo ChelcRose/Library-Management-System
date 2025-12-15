@@ -17,6 +17,7 @@ com/usc/libraryms/web/LoanController.class
 com/usc/libraryms/web/BookController.class
 com/usc/libraryms/service/LibraryService.class
 com/usc/libraryms/service/PesoFinePolicy.class
+com/usc/libraryms/web/AdminController.class
 com/usc/libraryms/model/Librarian.class
 com/usc/libraryms/web/DashboardController.class
 com/usc/libraryms/model/Loan.class
