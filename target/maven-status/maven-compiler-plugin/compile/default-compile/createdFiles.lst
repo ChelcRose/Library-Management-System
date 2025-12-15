@@ -23,4 +23,5 @@ com/usc/libraryms/web/AdminController$1.class
 com/usc/libraryms/web/AdminController.class
 com/usc/libraryms/model/Librarian.class
 com/usc/libraryms/web/DashboardController.class
+com/usc/libraryms/web/MemberController.class
 com/usc/libraryms/model/Loan.class

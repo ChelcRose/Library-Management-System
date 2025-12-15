@@ -71,5 +71,18 @@ public class LibraryService {
 
         return "B" + nextId;
     }
+    /* ================= MEMBER LOANS ================= */
+
+    public List<Loan> loansByMember(String memberId) {
+        return loans.findByMemberId(memberId);
+    }
+
+    public List<Loan> activeLoansByMember(String memberId) {
+        return loans.findByMemberId(memberId)
+                .stream()
+                .filter(l -> !l.isReturned())
+                .toList();
+    }
+
 
 }

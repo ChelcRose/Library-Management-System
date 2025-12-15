@@ -1,6 +1,9 @@
 package com.usc.libraryms.web;
 
+import com.usc.libraryms.model.User;
+import com.usc.libraryms.repo.UserRepository;
 import com.usc.libraryms.service.LibraryService;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,10 +14,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class LoanController {
 
     private final LibraryService library;
+    private final UserRepository users;
 
-    public LoanController(LibraryService library) {
+    public LoanController(LibraryService library, UserRepository users) {
         this.library = library;
+        this.users = users;
     }
+
+    /* ================= VIEW LOANS (ADMIN / LIBRARIAN) ================= */
 
     @GetMapping
     public String loans(Model model) {
@@ -22,37 +29,50 @@ public class LoanController {
         return "loans";
     }
 
+    /* ================= BORROW ================= */
+
     @PostMapping("/borrow")
     public String borrow(@RequestParam String bookId,
-                         @RequestParam String memberId,
                          @RequestParam int days,
+                         Authentication auth,
                          RedirectAttributes redirectAttributes) {
+
         try {
+            // ✅ get logged-in user
+            String username = auth.getName();
+            String memberId = users.findByUsername(username)
+                    .orElseThrow()
+                    .getUserId();
+
             library.borrow(bookId, memberId, days);
             redirectAttributes.addFlashAttribute("success", "Book borrowed successfully!");
-        } catch (IllegalArgumentException e) {
-            redirectAttributes.addFlashAttribute("error", "Book not found: " + e.getMessage());
-        } catch (IllegalStateException e) {
-            redirectAttributes.addFlashAttribute("error", "No copies available");
+
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", "Failed to borrow book");
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
         }
+
         return "redirect:/dashboard";
     }
 
+
+    /* ================= RETURN ================= */
+
     @PostMapping("/return")
     public String returnLoan(@RequestParam String loanId,
-                            RedirectAttributes redirectAttributes) {
+                             RedirectAttributes ra) {
         try {
             double fine = library.returnLoan(loanId);
+
             if (fine > 0) {
-                redirectAttributes.addFlashAttribute("fine", "Fine: $" + String.format("%.2f", fine));
+                ra.addFlashAttribute("fine", "Fine: ₱" + fine);
             } else {
-                redirectAttributes.addFlashAttribute("success", "Book returned successfully!");
+                ra.addFlashAttribute("success", "Book returned successfully!");
             }
+
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", "Failed to return book: " + e.getMessage());
+            ra.addFlashAttribute("error", e.getMessage());
         }
+
         return "redirect:/loans";
     }
 }

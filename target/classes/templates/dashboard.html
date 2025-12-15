@@ -177,19 +177,19 @@
             flex-shrink: 0;
         }
 
-        .stat-card.purple .stat-icon { 
+        .stat-card.purple .stat-icon {
             background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
         }
-        .stat-card.green .stat-icon { 
+        .stat-card.green .stat-icon {
             background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
         }
-        .stat-card.blue .stat-icon { 
+        .stat-card.blue .stat-icon {
             background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
         }
-        .stat-card.pink .stat-icon { 
+        .stat-card.pink .stat-icon {
             background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
         }
-        .stat-card.red .stat-icon { 
+        .stat-card.red .stat-icon {
             background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
         }
 
@@ -501,12 +501,19 @@
         <!-- MEMBER NAVIGATION -->
         <ul class="nav-menu" sec:authorize="hasRole('MEMBER')">
             <li class="nav-item">
-                <a href="/dashboard" class="active">
+                <a href="/dashboard">
                     <span>📊</span>
                     <span>Overview</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="/member/loans">
+                    <span>📚</span>
+                    <span>My Loans</span>
+                </a>
+            </li>
         </ul>
+
     </aside>
 
     <!-- MAIN CONTENT -->
@@ -608,7 +615,6 @@
 
                             <form method="post" action="/loans/borrow">
                                 <input type="hidden" name="bookId" th:value="${b.id}">
-                                <input type="hidden" name="memberId" sec:authentication="name">
                                 <input type="hidden" name="days" value="7">
 
                                 <button class="borrow-btn"
@@ -616,6 +622,7 @@
                                     Borrow
                                 </button>
                             </form>
+
                         </div>
 
                     </div>
