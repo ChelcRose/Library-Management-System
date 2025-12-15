@@ -5,6 +5,9 @@ import com.usc.libraryms.service.LibraryService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.nio.file.*;
 
 @Controller
 @RequestMapping("/books")
@@ -25,7 +28,26 @@ public class BookController {
     }
 
     @PostMapping
-    public String addBook(@ModelAttribute("newBook") Book b) {
+    public String addBook(@ModelAttribute("newBook") Book b,
+                          @RequestParam("coverFile") MultipartFile file) {
+
+        try {
+            // ✅ STORE OUTSIDE src/
+            Path uploadDir = Paths.get("uploads");
+            Files.createDirectories(uploadDir);
+
+            String filename = b.getId() + "_" + file.getOriginalFilename();
+            Path filePath = uploadDir.resolve(filename);
+
+            Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+
+            // ✅ PUBLIC URL
+            b.setCoverUrl("/uploads/" + filename);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         library.addBook(b);
         return "redirect:/books";
     }

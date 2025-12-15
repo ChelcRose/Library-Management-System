@@ -5,17 +5,54 @@
 <section>
 
   <h2>Welcome to the Library Dashboard</h2>
+
   <p>You are logged in as: <strong sec:authentication="name"></strong></p>
 
   <hr>
 
   <!-- STUDENT -->
   <div sec:authorize="hasRole('MEMBER')">
-    <h3>📖 Student Options</h3>
-    <ul>
-      <li><a href="/loans">Borrow / Return Books</a></li>
-    </ul>
+
+    <h3>📚 Available Books</h3>
+
+    <div class="gallery">
+      <div class="book-card" th:each="b : ${books}">
+
+        <!-- clickable image -->
+        <img th:src="@{${b.coverUrl}}"
+             alt="Cover"
+             onclick="toggleDetails(this)">
+
+        <div class="title" th:text="${b.title}"></div>
+
+        <!-- hidden details -->
+        <div class="book-details">
+          <p><strong>Author:</strong> <span th:text="${b.author}"></span></p>
+          <p><strong>Category:</strong> <span th:text="${b.category}"></span></p>
+          <p>
+            <strong>Available:</strong>
+            <span th:text="${b.availableCopies + '/' + b.totalCopies}"></span>
+          </p>
+
+          <!-- Borrow -->
+          <form method="post" action="/loans/borrow">
+            <input type="hidden" name="bookId" th:value="${b.id}">
+            <input type="hidden" name="memberId" sec:authentication="name">
+            <input type="hidden" name="days" value="7">
+
+            <button class="borrow-btn"
+                    th:disabled="${b.availableCopies == 0}">
+              Borrow
+            </button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+
   </div>
+
+
 
   <!-- LIBRARIAN -->
   <div sec:authorize="hasRole('LIBRARIAN')">
@@ -35,6 +72,13 @@
       <li><a href="/admin/users">Manage Users</a></li>
     </ul>
   </div>
+  <script>
+    function toggleDetails(img) {
+      const details = img.parentElement.querySelector(".book-details");
+      details.style.display =
+        details.style.display === "block" ? "none" : "block";
+    }
+  </script>
 
 </section>
 </html>

@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Library MS</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
 </head>
 <body>
 
-<header style="display:flex;justify-content:space-between;align-items:center">
+<header class="header">
     <h2>📚 Library Management System</h2>
-
     <form th:action="@{/logout}" method="post">
         <button type="submit">Logout</button>
     </form>
@@ -17,7 +17,7 @@
 <hr>
 
 <main th:fragment="layout(content)">
-    <div th:replace="${content}"></div>
+    <div class="page-container" th:replace="${content}"></div>
 </main>
 
 </body>

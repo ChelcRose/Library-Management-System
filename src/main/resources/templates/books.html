@@ -6,13 +6,13 @@
     <h2>Books</h2>
 
     <form method="get" action="/books">
-        <input name="q" th:value="${q}" placeholder="Search title / author / category">
+        <input name="q" th:value="${q}" placeholder="Search">
         <button type="submit">Search</button>
-        <a href="/books">Reset</a>
     </form>
 
     <h3>Add Book</h3>
-    <form method="post" action="/books" th:object="${newBook}">
+    <form method="post" action="/books" th:object="${newBook}" enctype="multipart/form-data">
+        <input type="file" name="coverFile" required>
         <input th:field="*{id}" placeholder="ID" required>
         <input th:field="*{title}" placeholder="Title" required>
         <input th:field="*{author}" placeholder="Author" required>
@@ -20,27 +20,6 @@
         <input th:field="*{totalCopies}" type="number" min="1" required>
         <button type="submit">Add</button>
     </form>
-
-    <h3>Book List</h3>
-    <table border="1">
-        <tr>
-            <th>ID</th><th>Title</th><th>Author</th>
-            <th>Category</th><th>Avail/Total</th><th>Action</th>
-        </tr>
-
-        <tr th:each="b : ${books}">
-            <td th:text="${b.id}"></td>
-            <td th:text="${b.title}"></td>
-            <td th:text="${b.author}"></td>
-            <td th:text="${b.category}"></td>
-            <td th:text="${b.availableCopies + '/' + b.totalCopies}"></td>
-            <td>
-                <form th:action="@{'/books/' + ${b.id} + '/delete'}" method="post">
-                    <button type="submit">Delete</button>
-                </form>
-            </td>
-        </tr>
-    </table>
 
 </section>
 </html>

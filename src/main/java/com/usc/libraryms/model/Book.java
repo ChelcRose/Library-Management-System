@@ -13,6 +13,8 @@ public class Book {
     private String title;
     private String author;
     private String category;
+    private String coverUrl;
+
 
     private int totalCopies;
     private int availableCopies;
@@ -29,7 +31,9 @@ public class Book {
     }
 
     /* ========= GETTERS ========= */
+
     public String getId() { return id; }
+    public String getCoverUrl() { return coverUrl; }
     public String getTitle() { return title; }
     public String getAuthor() { return author; }
     public String getCategory() { return category; }
@@ -38,6 +42,7 @@ public class Book {
 
     /* ========= SETTERS (REQUIRED FOR FORMS) ========= */
     public void setId(String id) { this.id = id; }
+    public void setCoverUrl(String coverUrl) { this.coverUrl = coverUrl; }
     public void setTitle(String title) { this.title = title; }
     public void setAuthor(String author) { this.author = author; }
     public void setCategory(String category) { this.category = category; }

@@ -4,6 +4,7 @@ com/usc/libraryms/model/Role.class
 com/usc/libraryms/config/DataLoader.class
 com/usc/libraryms/web/AuthController.class
 com/usc/libraryms/repo/LoanRepository.class
+com/usc/libraryms/config/WebConfig.class
 com/usc/libraryms/web/HomeController.class
 com/usc/libraryms/model/User.class
 com/usc/libraryms/model/Admin.class

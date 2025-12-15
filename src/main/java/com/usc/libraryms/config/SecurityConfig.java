@@ -17,14 +17,15 @@ public class SecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/css/**").permitAll()
-
+                        .requestMatchers("/login", "/css/**", "/uploads/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/books").hasAnyRole("ADMIN","LIBRARIAN","MEMBER")
                         .requestMatchers("/books/**").hasAnyRole("ADMIN","LIBRARIAN")
+                        .requestMatchers("/member/**").hasRole("MEMBER")
                         .requestMatchers("/loans/**").hasAnyRole("ADMIN","LIBRARIAN","MEMBER")
-
                         .anyRequest().authenticated()
                 )
+
                 .formLogin(form -> form
                         .loginPage("/login")
                         .defaultSuccessUrl("/dashboard", true)
