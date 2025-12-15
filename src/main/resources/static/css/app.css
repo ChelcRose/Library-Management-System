@@ -1,5 +1,6 @@
 /* ===== GLOBAL ===== */
-body {
+.app-body {
+  background: red;   /* THIS WILL NOW SHOW */
   margin: 0;
   font-family: Arial, sans-serif;
 }
@@ -10,12 +11,16 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
+  background: #ffffff;
 }
 
-/* ===== PAGE CONTAINER ===== */
+/* ===== PAGE CONTENT ===== */
 .page-container {
   max-width: 1000px;
-  margin: 0 auto;
+  margin: 20px auto;
+  background: #f4f6f8;
+  padding: 20px;
+  border-radius: 8px;
 }
 
 /* ===== GALLERY ===== */
@@ -23,7 +28,6 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, 160px);
   gap: 20px;
-  justify-content: start;
 }
 
 /* ===== BOOK CARD ===== */
@@ -32,17 +36,16 @@ body {
   background: #fff;
   border-radius: 6px;
   padding: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 
-/* ===== IMAGE ===== */
+/* 🔥 FORCE IMAGE SIZE — NO ESCAPE */
 .book-card img {
-  width: 160px;
-  height: 200px;
-  object-fit: cover;
+  width: 160px !important;
+  height: 200px !important;
+  object-fit: cover !important;
   display: block;
   border-radius: 4px;
-  cursor: pointer;
 }
 
 /* ===== TITLE ===== */
