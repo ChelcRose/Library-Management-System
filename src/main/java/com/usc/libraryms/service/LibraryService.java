@@ -61,4 +61,15 @@ public class LibraryService {
 
         return finePolicy.computeFine(loan.getDueDate(), returned);
     }
+    public String generateNextBookId() {
+        int nextId = books.findAllBookIds().stream()
+                .filter(id -> id.matches("B\\d+"))
+                .map(id -> id.substring(1))
+                .mapToInt(Integer::parseInt)
+                .max()
+                .orElse(0) + 1;
+
+        return "B" + nextId;
+    }
+
 }

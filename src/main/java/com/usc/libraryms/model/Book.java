@@ -47,6 +47,9 @@ public class Book {
     public void setAuthor(String author) { this.author = author; }
     public void setCategory(String category) { this.category = category; }
     public void setTotalCopies(int totalCopies) { this.totalCopies = totalCopies; }
+    public void setAvailableCopies(int availableCopies) {
+        this.availableCopies = availableCopies;
+    }
 
     /* ========= SAFETY INIT ========= */
     @PrePersist

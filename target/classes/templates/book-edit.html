@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<h2>Edit Book</h2>
+
+<form th:action="@{'/books/' + ${book.id} + '/edit'}"
+      th:object="${book}" method="post">
+
+  <p><b>ID:</b> <span th:text="${book.id}"></span></p>
+
+  <input th:field="*{title}" placeholder="Title" required>
+  <input th:field="*{author}" placeholder="Author" required>
+  <input th:field="*{category}" placeholder="Category" required>
+  <input th:field="*{totalCopies}" type="number" min="1" required>
+
+  <button type="submit">Save Changes</button>
+</form>
+
+<a href="/books">Back</a>
+
+</body>
+</html>
