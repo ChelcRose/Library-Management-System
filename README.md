@@ -1,1 +1,1 @@
-Our Library Management System Developed with Java + Spring Boot
+LIBRA – Library Management System developed with Java + Spring Boot

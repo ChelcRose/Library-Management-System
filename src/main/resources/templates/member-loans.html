@@ -3,6 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <title>My Loans | LIBRA</title>
+  <link rel="icon" type="image/png" href="/img/LIBRALOGO.png">
   <style>
     * {
       margin: 0;
@@ -39,11 +40,12 @@
     .logo-icon {
       width: 40px;
       height: 40px;
-      background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    }
+
+    .logo-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
 
     .logo h1 {
@@ -397,11 +399,10 @@
 
 <div class="container">
 
-  <!-- ===== SIDEBAR ===== -->
   <aside class="sidebar">
     <div class="logo">
-      <div class="logo-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><path d="M5 4h12a2 2 0 0 1 2 2v12H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path><path d="M9 4v14"></path></svg>
+      <div class="logo-icon">
+        <img src="/img/LIBRALOGO.png" alt="LIBRA logo">
       </div>
       <h1>LIBRA</h1>
     </div>
@@ -430,7 +431,6 @@
     </ul>
   </aside>
 
-  <!-- ===== MAIN ===== -->
   <main class="main-content">
 
     <div class="top-bar">
@@ -447,7 +447,6 @@
       <h2>My Borrowed Books</h2>
     </div>
 
-    <!-- ===== CURRENTLY BORROWED ===== -->
     <div class="card">
       <h3 class="section-title">Currently Borrowed</h3>
 
@@ -490,7 +489,6 @@
       </table>
     </div>
 
-    <!-- ===== BORROW HISTORY ===== -->
     <div class="card history-card">
       <h3 class="section-title history-title">Borrow History</h3>
 

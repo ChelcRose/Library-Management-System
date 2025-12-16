@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>LIBRA</title>
-
+    <link rel="icon" type="image/png" href="/img/LIBRALOGO.png">
     <link rel="stylesheet" href="/css/app.css">
 </head>
 <body>
 
 <header class="header">
-    <h2>LIBRA</h2>
+    <div class="brand">
+        <img src="/img/LIBRALOGO.png" alt="LIBRA logo" class="brand-logo">
+        <span>LIBRA</span>
+    </div>
     <form th:action="@{/logout}" method="post">
         <button type="submit">Logout</button>
     </form>

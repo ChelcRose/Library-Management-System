@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Register | LIBRA</title>
+  <link rel="icon" type="image/png" href="/img/LIBRALOGO.png">
   <style>
     * {
         margin: 0;
@@ -41,12 +42,20 @@
     .icon-wrapper {
         width: 80px;
         height: 80px;
-        background: linear-gradient(135deg, #a855f7, #ec4899);
+        background: #ffffff;
         border-radius: 20px;
         display: flex;
         justify-content: center;
         align-items: center;
         margin: 0 auto 30px;
+        padding: 10px;
+        box-shadow: 0 10px 25px rgba(168, 85, 247, 0.18);
+    }
+
+    .icon-wrapper img {
+        width: 46px;
+        height: 46px;
+        object-fit: contain;
     }
 
     h2 {
@@ -137,14 +146,6 @@
         text-decoration: underline;
     }
 
-    .icon-wrapper svg {
-    width: 40px;
-    height: 40px;
-    stroke: white;
-    fill: none;
-    stroke-width: 2;
-}
-
   </style>
 </head>
 <body>
@@ -152,10 +153,7 @@
 <div class="login-box">
 
   <div class="icon-wrapper">
-    <svg viewBox="0 0 24 24">
-      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-    </svg>
+    <img src="/img/LIBRALOGO.png" alt="LIBRA logo">
   </div>
 
   <h2>Create Member Account</h2>
