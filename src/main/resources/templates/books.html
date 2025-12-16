@@ -167,6 +167,14 @@
         <div class="card">
             <h3 class="section-title">Existing Books</h3>
 
+            <form method="get" action="/books" class="search-bar">
+                <input type="text"
+                       name="q"
+                       th:value="${q}"
+                       placeholder="Search by title, author, or category">
+                <button type="submit">Search</button>
+            </form>
+
             <table class="book-table">
                 <thead>
                 <tr>
