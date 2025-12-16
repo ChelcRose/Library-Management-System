@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Dashboard | Library MS</title>
+    <title>Dashboard | LIBRA</title>
     <style>
         * {
             margin: 0;
@@ -43,7 +43,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
         }
 
         .logo h1 {
@@ -167,7 +166,6 @@
         }
 
         .stat-icon {
-            font-size: 28px;
             width: 60px;
             height: 60px;
             display: flex;
@@ -452,8 +450,8 @@
     <!-- SIDEBAR -->
     <aside class="sidebar">
         <div class="logo">
-            <div class="logo-icon">📚</div>
-            <h1>Library System</h1>
+            <div class="logo-icon"></div>
+            <h1>LIBRA</h1>
         </div>
         <p class="welcome-text">Welcome, <strong sec:authentication="name"></strong></p>
 
@@ -461,19 +459,16 @@
         <ul class="nav-menu" sec:authorize="hasRole('LIBRARIAN')">
             <li class="nav-item">
                 <a href="/dashboard" class="active">
-                    <span>📊</span>
                     <span>Overview</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="/books">
-                    <span>📚</span>
                     <span>Manage Books</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="/loans">
-                    <span>🔄</span>
                     <span>Borrow / Return</span>
                 </a>
             </li>
@@ -483,25 +478,21 @@
         <ul class="nav-menu" sec:authorize="hasRole('ADMIN')">
             <li class="nav-item">
                 <a href="/dashboard" class="active">
-                    <span>📊</span>
                     <span>Overview</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="/books">
-                    <span>📚</span>
                     <span>Manage Books</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="/loans">
-                    <span>🔄</span>
                     <span>View Loans</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="/admin/users">
-                    <span>👥</span>
                     <span>Manage Users</span>
                 </a>
             </li>
@@ -511,13 +502,11 @@
         <ul class="nav-menu" sec:authorize="hasRole('MEMBER')">
             <li class="nav-item">
                 <a href="/dashboard" class ="active">
-                    <span>📊</span>
                     <span>Overview</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="/member/loans">
-                    <span>📚</span>
                     <span>My Borrowed Books</span>
                 </a>
             </li>
@@ -534,7 +523,6 @@
                 <span class="username" sec:authentication="name"></span>
                 <form method="post" action="/logout" style="margin: 0;">
                     <button class="logout-btn" type="submit">
-                        <span>↗</span>
                         <span>Logout</span>
                     </button>
                 </form>
@@ -551,15 +539,12 @@
 
             <!-- ALERT MESSAGES -->
             <div th:if="${success}" class="alert alert-success">
-                <span>✓</span>
                 <span th:text="${success}"></span>
             </div>
             <div th:if="${error}" class="alert alert-error">
-                <span>✗</span>
                 <span th:text="${error}"></span>
             </div>
             <div th:if="${fine}" class="alert alert-warning">
-                <span>⚠</span>
                 <span th:text="${fine}"></span>
             </div>
 
@@ -567,7 +552,7 @@
             <div class="stats-grid">
 
                 <div class="stat-card purple">
-                    <div class="stat-icon">📘</div>
+                    <div class="stat-icon"></div>
                     <div class="stat-info">
                         <p>Total Books</p>
                         <h3 th:text="${totalBooks}">0</h3>
@@ -575,7 +560,7 @@
                 </div>
 
                 <div class="stat-card green">
-                    <div class="stat-icon">📗</div>
+                    <div class="stat-icon"></div>
                     <div class="stat-info">
                         <p>Available Books</p>
                         <h3 th:text="${availableBooks}">0</h3>
@@ -583,7 +568,7 @@
                 </div>
 
                 <div class="stat-card blue">
-                    <div class="stat-icon">🔄</div>
+                    <div class="stat-icon"></div>
                     <div class="stat-info">
                         <p>Borrowed Books</p>
                         <h3 th:text="${borrowedBooks}">0</h3>
@@ -591,7 +576,7 @@
                 </div>
 
                 <div class="stat-card pink">
-                    <div class="stat-icon">👥</div>
+                    <div class="stat-icon"></div>
                     <div class="stat-info">
                         <p>Active Members</p>
                         <h3 th:text="${activeMembers}">0</h3>
@@ -603,7 +588,7 @@
             <!-- MEMBER VIEW -->
             <div sec:authorize="hasRole('MEMBER')" class="card">
 
-                <h3 class="section-title">📚 Available Books</h3>
+                <h3 class="section-title">Available Books</h3>
                 <form method="get" action="/dashboard" style="margin-bottom:20px; display:flex; gap:12px">
                     <input type="hidden" name="filter" th:value="${filter}">
                     <input type="text"
@@ -654,7 +639,7 @@
 
             <!-- LIBRARIAN -->
             <div sec:authorize="hasRole('LIBRARIAN')" class="card">
-                <h3 class="section-title">📚 Librarian Options</h3>
+                <h3 class="section-title">Librarian Options</h3>
                 <ul class="action-list">
                     <li><a href="/books">Manage Books</a></li>
                     <li><a href="/loans">Borrow / Return</a></li>
@@ -663,7 +648,7 @@
 
             <!-- ADMIN -->
             <div sec:authorize="hasRole('ADMIN')" class="card">
-                <h3 class="section-title">🛠 Administrator Options</h3>
+                <h3 class="section-title">Administrator Options</h3>
                 <ul class="action-list">
                     <li><a href="/books">Manage Books</a></li>
                     <li><a href="/loans">View Loans</a></li>

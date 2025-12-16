@@ -42,7 +42,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
         }
 
         .logo h1 {
@@ -258,8 +257,8 @@
     <!-- SIDEBAR -->
     <aside class="sidebar">
         <div class="logo">
-            <div class="logo-icon">📚</div>
-            <h1>Library System</h1>
+            <div class="logo-icon"></div>
+            <h1>LIBRA</h1>
         </div>
         <p class="welcome-text">Welcome, <strong sec:authentication="name"></strong></p>
 
@@ -267,19 +266,16 @@
         <ul class="nav-menu" sec:authorize="hasRole('LIBRARIAN')">
             <li class="nav-item">
                 <a href="/dashboard">
-                    <span>📊</span>
                     <span>Overview</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="/books">
-                    <span>📚</span>
                     <span>Manage Books</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="/loans" class="active">
-                    <span>🔄</span>
                     <span>Borrow / Return</span>
                 </a>
             </li>
@@ -289,25 +285,21 @@
         <ul class="nav-menu" sec:authorize="hasRole('ADMIN')">
             <li class="nav-item">
                 <a href="/dashboard">
-                    <span>📊</span>
                     <span>Overview</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="/books">
-                    <span>📚</span>
                     <span>Manage Books</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="/loans" class="active">
-                    <span>🔄</span>
                     <span>View Loans</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="/admin/users">
-                    <span>👥</span>
                     <span>Manage Users</span>
                 </a>
             </li>
@@ -323,7 +315,6 @@
                 <span class="username" sec:authentication="name"></span>
                 <form method="post" action="/logout" style="margin: 0;">
                     <button class="logout-btn" type="submit">
-                        <span>↗</span>
                         <span>Logout</span>
                     </button>
                 </form>
@@ -334,7 +325,7 @@
 
             <!-- HEADER -->
             <div class="page-header">
-                <h2>🔄 Borrow / Return</h2>
+                <h2>Borrow / Return</h2>
             </div>
 
             <!-- BORROW & RETURN FORMS -->
