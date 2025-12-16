@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Select Preferences</title>
+    <style>
+        body{font-family:sans-serif;background:#f8f7ff;padding:40px}
+        .card{max-width:500px;margin:auto;background:#fff;padding:30px;border-radius:16px}
+        button{margin-top:20px;padding:12px 20px;border:none;border-radius:10px;
+               background:#8b5cf6;color:#fff;font-weight:600}
+        label{display:block;margin:10px 0}
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>📚 Choose Your Preferred Genres</h2>
+    <p>This helps us recommend books for you.</p>
+
+    <form method="post">
+        <div th:each="c : ${categories}">
+            <label>
+                <input type="checkbox" name="categories" th:value="${c}">
+                <span th:text="${c}"></span>
+            </label>
+        </div>
+
+        <button type="submit">Continue</button>
+    </form>
+</div>
+
+</body>
+</html>

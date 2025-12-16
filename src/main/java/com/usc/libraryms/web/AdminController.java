@@ -35,15 +35,12 @@ public class AdminController {
         return "redirect:/admin/users";
     }
 
-    /* ================= CREATE USER ================= */
-
     @PostMapping("/users/create")
     public String createUser(@RequestParam String name,
                              @RequestParam String username,
                              @RequestParam String password,
                              @RequestParam Role role) {
 
-        // ✅ FIXED: use sequential ID
         String id = generateNextUserId();
         String encoded = encoder.encode(password);
 
@@ -59,8 +56,6 @@ public class AdminController {
         return "redirect:/admin/users";
     }
 
-    /* ================= HELPER METHOD ================= */
-    // 📌 MUST be INSIDE the class, but OUTSIDE other methods
 
     private String generateNextUserId() {
         int nextId = users.findAllUserIds().stream()

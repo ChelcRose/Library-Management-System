@@ -1,6 +1,9 @@
 package com.usc.libraryms.web;
 
 import com.usc.libraryms.model.Book;
+import com.usc.libraryms.model.Member;
+import com.usc.libraryms.model.User;
+import com.usc.libraryms.repo.UserRepository;
 import com.usc.libraryms.service.LibraryService;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -12,9 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class DashboardController {
 
     private final LibraryService library;
+    private final UserRepository users;
 
-    public DashboardController(LibraryService library) {
+    // ✅ FIX: inject UserRepository
+    public DashboardController(LibraryService library, UserRepository users) {
         this.library = library;
+        this.users = users;
     }
 
     @GetMapping("/dashboard")
@@ -23,6 +29,16 @@ public class DashboardController {
             @RequestParam(required = false) String filter,
             Authentication auth,
             Model model) {
+
+        if (auth != null && auth.isAuthenticated()) {
+            User u = users.findByUsername(auth.getName())
+                    .orElseThrow(() -> new IllegalStateException("User not found"));
+
+            // ✅ FIRST-TIME MEMBER REDIRECT
+            if (u instanceof Member m && !m.isPreferencesSet()) {
+                return "redirect:/member/preferences";
+            }
+        }
 
         var allBooks = library.search(q);
 
@@ -38,6 +54,4 @@ public class DashboardController {
 
         return "dashboard";
     }
-
-
 }

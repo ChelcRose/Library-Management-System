@@ -2,6 +2,7 @@ package com.usc.libraryms.service;
 
 import com.usc.libraryms.model.Book;
 import com.usc.libraryms.model.Loan;
+import com.usc.libraryms.model.Member;
 import com.usc.libraryms.repo.BookRepository;
 import com.usc.libraryms.repo.LoanRepository;
 import org.springframework.stereotype.Service;
@@ -71,11 +72,24 @@ public class LibraryService {
 
         return "B" + nextId;
     }
+
+    public List<Book> recommendedFor(Member member) {
+        if (member.getPreferredCategories().isEmpty()) {
+            return books.findAll();
+        }
+
+        return books.findAll().stream()
+                .filter(b -> member.getPreferredCategories()
+                        .contains(b.getCategory()))
+                .toList();
+    }
+
     /* ================= MEMBER LOANS ================= */
 
     public List<Loan> loansByMember(String memberId) {
         return loans.findByMemberId(memberId);
     }
+
 
     public List<Loan> activeLoansByMember(String memberId) {
         return loans.findByMemberId(memberId)

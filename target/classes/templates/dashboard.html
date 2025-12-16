@@ -215,13 +215,15 @@
         }
 
         /* RECENT TRANSACTIONS */
-        .card {
-            background: #fff;
-            padding: 30px;
-            border-radius: 16px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+       .card {
+        background: #fff;
+        padding: 30px;
+        border-radius: 16px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        overflow: hidden;
         }
+
 
         .section-title {
             font-size: 20px;
@@ -293,6 +295,12 @@
             gap: 24px;
             align-items: start;
         }
+        .gallery-wrapper {
+    max-height: 620px;   /* adjust to your design */
+    overflow-y: auto;
+    padding-right: 6px;
+}
+
 
         .book-card {
             background: #fff;
@@ -609,7 +617,7 @@
                     </button>
                 </form>
 
-
+                <div class="gallery-wrapper">
                 <div class="gallery">
                     <div class="book-card" th:each="b : ${books}">
 
@@ -640,6 +648,7 @@
                         </div>
 
                     </div>
+                </div>
                 </div>
             </div>
 
