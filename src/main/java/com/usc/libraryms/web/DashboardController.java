@@ -27,6 +27,7 @@ public class DashboardController {
     public String dashboard(
             @RequestParam(required = false) String q,
             @RequestParam(required = false) String filter,
+            @RequestParam(required = false) String category,
             Authentication auth,
             Model model) {
 
@@ -48,9 +49,21 @@ public class DashboardController {
                     .toList();
         }
 
+        if (category != null && !category.isBlank()) {
+            String cat = category.trim();
+            allBooks = allBooks.stream()
+                    .filter(b -> cat.equalsIgnoreCase(b.getCategory()))
+                    .toList();
+        }
+
+        var categories = library.allCategories();
+
         model.addAttribute("books", allBooks);
         model.addAttribute("q", q == null ? "" : q);
         model.addAttribute("filter", filter == null ? "all" : filter);
+        model.addAttribute("categories", categories);
+        model.addAttribute("categoriesCount", categories.size());
+        model.addAttribute("selectedCategory", category == null ? "" : category);
 
         return "dashboard";
     }

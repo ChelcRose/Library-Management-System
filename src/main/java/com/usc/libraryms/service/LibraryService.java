@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class LibraryService {
@@ -82,6 +84,17 @@ public class LibraryService {
                 .filter(b -> member.getPreferredCategories()
                         .contains(b.getCategory()))
                 .toList();
+    }
+
+    public List<String> allCategories() {
+        return books.findAll().stream()
+                .map(Book::getCategory)
+                .filter(Objects::nonNull)
+                .map(String::trim)
+                .filter(s -> !s.isEmpty())
+                .distinct()
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     /* ================= MEMBER LOANS ================= */

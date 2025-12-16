@@ -164,6 +164,10 @@
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
         }
 
+        .stat-card.clickable {
+            cursor: pointer;
+        }
+
         .stat-icon {
             width: 60px;
             height: 60px;
@@ -231,6 +235,40 @@
             font-size: 28px;
             color: #1f1f1f;
             font-weight: 600;
+        }
+
+        .category-section {
+            margin-bottom: 24px;
+        }
+
+        .category-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .category-pill {
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: 1px solid #e5e7eb;
+            background: #f9f5ff;
+            color: #6b21a8;
+            font-size: 13px;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, transform 0.1s;
+        }
+
+        .category-pill:hover {
+            background: #ede9fe;
+            transform: translateY(-1px);
+        }
+
+        .category-pill.active {
+            background: #8b5cf6;
+            color: #fff;
+            border-color: #7c3aed;
         }
 
        .card {
@@ -587,44 +625,18 @@
             </div>
 
             <div class="stats-grid">
-
-                <div class="stat-card purple">
+                <div class="stat-card blue clickable" onclick="scrollToCategories()">
                     <div class="stat-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24"><path d="M6 4h10a2 2 0 0 1 2 2v12H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path><path d="M8 4v14"></path></svg>
+                        <svg viewBox="0 0 24 24">
+                            <path d="M4 19h16"></path>
+                            <path d="M4 15h10"></path>
+                            <path d="M4 11h7"></path>
+                            <path d="M4 7h13"></path>
+                        </svg>
                     </div>
                     <div class="stat-info">
-                        <p>Total Books</p>
-                        <h3 th:text="${totalBooks}">0</h3>
-                    </div>
-                </div>
-
-                <div class="stat-card green">
-                    <div class="stat-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M9 12l2 2 4-4"></path></svg>
-                    </div>
-                    <div class="stat-info">
-                        <p>Available Books</p>
-                        <h3 th:text="${availableBooks}">0</h3>
-                    </div>
-                </div>
-
-                <div class="stat-card blue">
-                    <div class="stat-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24"><path d="M7 7h10l-2-2m2 2l-2 2"></path><path d="M17 17H7l2-2m-2 2l2 2"></path></svg>
-                    </div>
-                    <div class="stat-info">
-                        <p>Borrowed Books</p>
-                        <h3 th:text="${borrowedBooks}">0</h3>
-                    </div>
-                </div>
-
-                <div class="stat-card pink">
-                    <div class="stat-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 11a4 4 0 0 1 0-8"></path></svg>
-                    </div>
-                    <div class="stat-info">
-                        <p>Active Members</p>
-                        <h3 th:text="${activeMembers}">0</h3>
+                        <p>Categories</p>
+                        <h3 th:text="${categoriesCount}">0</h3>
                     </div>
                 </div>
 
@@ -633,6 +645,22 @@
             <div sec:authorize="hasRole('MEMBER')" class="card">
 
                 <h3 class="section-title">Available Books</h3>
+
+                <div id="member-categories" class="category-section" th:if="${categoriesCount > 0}">
+                    <div class="category-grid">
+                        <a th:href="@{/dashboard}"
+                           class="category-pill"
+                           th:classappend="${selectedCategory == ''} ? ' active'">
+                            All
+                        </a>
+                        <a th:each="c : ${categories}"
+                           th:href="@{/dashboard(category=${c})}"
+                           class="category-pill"
+                           th:text="${c}"
+                           th:classappend="${selectedCategory == c} ? ' active'">
+                        </a>
+                    </div>
+                </div>
                 <form method="get" action="/dashboard" style="margin-bottom:20px; display:flex; gap:12px">
                     <input type="hidden" name="filter" th:value="${filter}">
                     <input type="text"
@@ -719,6 +747,13 @@
 
         if (!isOpen) {
             targetDetails.style.display = "block";
+        }
+    }
+
+    function scrollToCategories() {
+        const el = document.getElementById("member-categories");
+        if (el) {
+            el.scrollIntoView({ behavior: "smooth", block: "start" });
         }
     }
 </script>
