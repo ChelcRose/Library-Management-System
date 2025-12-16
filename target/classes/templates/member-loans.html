@@ -208,6 +208,103 @@
       font-size: 15px;
     }
 
+    /* ===== BOOK COVER IMAGES ===== */
+    .book-cover-small {
+      width: 60px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      display: block;
+    }
+
+    .no-cover {
+      display: inline-block;
+      width: 60px;
+      height: 80px;
+      background: #f3f4f6;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #9ca3af;
+    }
+
+    /* ===== BORROW HISTORY STYLING ===== */
+    .history-card {
+      background: linear-gradient(135deg, rgba(255, 245, 238, 0.5) 0%, rgba(255, 250, 240, 0.5) 100%) !important;
+      border: 2px solid rgba(255, 182, 193, 0.5) !important;
+      box-shadow: 0 4px 20px rgba(255, 182, 193, 0.2) !important;
+      padding: 30px !important;
+    }
+
+    .history-title {
+      color: #d4a5a5 !important;
+      padding-bottom: 15px;
+      border-bottom: 2px solid rgba(255, 182, 193, 0.4) !important;
+      margin-bottom: 25px !important;
+    }
+
+    .history-table {
+      background: rgba(255, 255, 255, 0.6) !important;
+      border-radius: 12px;
+      overflow: hidden;
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+
+    .history-table thead {
+      background: linear-gradient(135deg, rgba(255, 228, 225, 0.8) 0%, rgba(255, 218, 185, 0.8) 100%) !important;
+      border-bottom: 2px solid rgba(255, 182, 193, 0.4) !important;
+    }
+
+    .history-table thead th {
+      color: #c98a8a !important;
+      font-weight: 600 !important;
+      background: transparent !important;
+      padding: 16px 15px !important;
+      border-bottom: 2px solid rgba(255, 182, 193, 0.4) !important;
+    }
+
+    .history-table tbody tr.history-row {
+      background: rgba(255, 255, 255, 0.5) !important;
+      border-left: 4px solid rgba(255, 182, 193, 0.4) !important;
+      transition: all 0.3s ease;
+      margin-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 182, 193, 0.2) !important;
+    }
+
+    .history-table tbody tr.history-row:hover {
+      background: rgba(255, 240, 245, 0.7) !important;
+      border-left-color: rgba(255, 182, 193, 0.7) !important;
+      transform: translateX(4px);
+      box-shadow: 0 2px 8px rgba(255, 182, 193, 0.3) !important;
+    }
+
+    .history-table tbody tr.history-row:last-child {
+      border-bottom: none !important;
+    }
+
+    .history-table tbody tr.history-row td.history-cell {
+      background: transparent !important;
+      border: none !important;
+      padding: 20px 15px !important;
+      position: relative;
+    }
+
+    .history-table tbody tr.history-row td.history-cell.date-cell {
+      color: #b88a8a !important;
+      font-weight: 500 !important;
+    }
+
+    .history-table .status-returned {
+      background: rgba(176, 224, 230, 0.6) !important;
+      color: #5a9ba5 !important;
+      border: 1px solid rgba(176, 224, 230, 0.7) !important;
+    }
+
     /* ===== STATUS BADGES ===== */
     .status-active {
       color: #f59e0b;
@@ -327,6 +424,7 @@
       <table class="loan-table">
         <thead>
         <tr>
+          <th>Cover</th>
           <th>Book Title</th>
           <th>Author</th>
           <th>Borrowed Date</th>
@@ -336,6 +434,13 @@
         </thead>
         <tbody>
         <tr th:each="item : ${activeLoans}" th:with="loan=${item['loan']}, book=${item['book']}">
+          <td>
+            <img th:if="${book != null and book.coverUrl != null}" 
+                 th:src="@{${book.coverUrl}}" 
+                 class="book-cover-small"
+                 alt="Book cover">
+            <span th:if="${book == null or book.coverUrl == null}" class="no-cover">📖</span>
+          </td>
           <td>
             <strong th:text="${book != null ? book.title : loan.bookId}"></strong>
           </td>
@@ -347,7 +452,7 @@
           </td>
         </tr>
         <tr th:if="${#lists.isEmpty(activeLoans)}">
-          <td colspan="5" style="text-align: center; color: #999; padding: 30px;">
+          <td colspan="6" style="text-align: center; color: #999; padding: 30px;">
             No currently borrowed books
           </td>
         </tr>
@@ -356,12 +461,13 @@
     </div>
 
     <!-- ===== BORROW HISTORY ===== -->
-    <div class="card">
-      <h3 class="section-title">Borrow History</h3>
+    <div class="card history-card">
+      <h3 class="section-title history-title">📜 Borrow History</h3>
 
-      <table class="loan-table">
+      <table class="loan-table history-table">
         <thead>
         <tr>
+          <th>Cover</th>
           <th>Book Title</th>
           <th>Author</th>
           <th>Borrowed Date</th>
@@ -370,23 +476,30 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="item : ${returnedLoans}" th:with="loan=${item['loan']}, book=${item['book']}">
-          <td>
+        <tr th:each="item : ${returnedLoans}" th:with="loan=${item['loan']}, book=${item['book']}" class="history-row">
+          <td class="history-cell">
+            <img th:if="${book != null and book.coverUrl != null}" 
+                 th:src="@{${book.coverUrl}}" 
+                 class="book-cover-small"
+                 alt="Book cover">
+            <span th:if="${book == null or book.coverUrl == null}" class="no-cover">📖</span>
+          </td>
+          <td class="history-cell">
             <strong th:text="${book != null ? book.title : loan.bookId}"></strong>
           </td>
-          <td th:text="${book != null ? book.author : 'N/A'}"></td>
-          <td th:text="${#temporals.format(loan.borrowDate, 'MMM dd, yyyy')}"></td>
-          <td>
+          <td class="history-cell" th:text="${book != null ? book.author : 'N/A'}"></td>
+          <td class="history-cell date-cell" th:text="${#temporals.format(loan.borrowDate, 'MMM dd, yyyy')}"></td>
+          <td class="history-cell date-cell">
             <span class="status-returned" 
                   th:text="${#temporals.format(loan.returnDate, 'MMM dd, yyyy')}">
             </span>
           </td>
-          <td>
+          <td class="history-cell">
             <span class="status-returned">Returned</span>
           </td>
         </tr>
         <tr th:if="${#lists.isEmpty(returnedLoans)}">
-          <td colspan="5" style="text-align: center; color: #999; padding: 30px;">
+          <td colspan="6" style="text-align: center; color: #999; padding: 30px;">
             No borrow history available
           </td>
         </tr>
