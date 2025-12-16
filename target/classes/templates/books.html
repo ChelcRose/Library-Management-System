@@ -18,18 +18,30 @@
         }
         .logo{display:flex;align-items:center;gap:12px;margin-bottom:10px}
         .logo-icon{
-            width:40px;height:40px;
-            background:linear-gradient(135deg,#a78bfa,#8b5cf6);
-            border-radius:10px;
-            display:flex;align-items:center;justify-content:center
+        width:40px;height:40px;
+        background:linear-gradient(135deg,#a78bfa,#8b5cf6);
+        border-radius:12px;
+        display:flex;align-items:center;justify-content:center;
+        font-size:14px;
+        font-weight:700;
+        letter-spacing:0.08em;
+        text-transform:uppercase;
+        color:#fff;
         }
         .logo h1{color:#8b5cf6;font-size:20px}
         .welcome-text{color:#a78bfa;font-size:14px;margin-bottom:30px}
         .nav-menu{list-style:none}
         .nav-item{margin-bottom:5px}
         .nav-item a{
-            display:flex;gap:12px;padding:12px 15px;
-            border-radius:10px;text-decoration:none;color:#666
+        display:flex;gap:12px;padding:12px 15px;
+        border-radius:10px;text-decoration:none;color:#666
+        }
+        .nav-icon-circle{
+        width:28px;height:28px;border-radius:999px;
+        display:inline-flex;align-items:center;justify-content:center;
+        font-size:13px;font-weight:600;
+        background:linear-gradient(135deg,#a78bfa,#8b5cf6);
+        color:#fff;letter-spacing:0.04em;text-transform:uppercase;
         }
         .nav-item a.active,.nav-item a:hover{
             background:#f3f0ff;color:#8b5cf6;font-weight:600
@@ -105,8 +117,8 @@
     <!-- ===== SIDEBAR ===== -->
     <aside class="sidebar">
         <div class="logo">
-            <div class="logo-icon">📚</div>
-            <h1>Library System</h1>
+            <div class="logo-icon">LB</div>
+            <h1>LIBRA</h1>
         </div>
         <p class="welcome-text">
             Welcome, <strong sec:authentication="name"></strong>
@@ -116,17 +128,17 @@
         <ul class="nav-menu" sec:authorize="hasRole('LIBRARIAN')">
             <li class="nav-item">
                 <a href="/dashboard">
-                    <span>📊</span><span>Overview</span>
+                    <span class="nav-icon-circle">DB</span><span>Overview</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="/books" class="active">
-                    <span>📚</span><span>Manage Books</span>
+                    <span class="nav-icon-circle">BK</span><span>Manage Books</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="/loans">
-                    <span>🔄</span><span>Borrow / Return</span>
+                    <span class="nav-icon-circle">LN</span><span>Borrow / Return</span>
                 </a>
             </li>
         </ul>
@@ -135,22 +147,22 @@
         <ul class="nav-menu" sec:authorize="hasRole('ADMIN')">
             <li class="nav-item">
                 <a href="/dashboard">
-                    <span>📊</span><span>Overview</span>
+                    <span class="nav-icon-circle">DB</span><span>Overview</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="/books" class="active">
-                    <span>📚</span><span>Manage Books</span>
+                    <span class="nav-icon-circle">BK</span><span>Manage Books</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="/loans">
-                    <span>🔄</span><span>View Loans</span>
+                    <span class="nav-icon-circle">LN</span><span>View Loans</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="/admin/users">
-                    <span>👥</span><span>Manage Users</span>
+                    <span class="nav-icon-circle">US</span><span>Manage Users</span>
                 </a>
             </li>
         </ul>
@@ -160,7 +172,7 @@
     <main class="main-content">
 
         <div class="page-header">
-            <h2>📚 Manage Books</h2>
+            <h2>Manage Books</h2>
         </div>
         <div class="card"> <h3 class="section-title">Add Book</h3> <form method="post" action="/books" th:object="${newBook}" enctype="multipart/form-data" class="add-book-form"> <input type="file" name="coverFile" required> <input th:field="*{title}" placeholder="Title" required> <input th:field="*{author}" placeholder="Author" required> <input th:field="*{category}" placeholder="Category" required> <input th:field="*{totalCopies}" type="number" min="1" placeholder="Total Copies" required> <button type="submit">Add Book</button> </form> </div>
 

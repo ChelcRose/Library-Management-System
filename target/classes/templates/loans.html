@@ -38,11 +38,15 @@
             width: 40px;
             height: 40px;
             background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
-            border-radius: 10px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #fff;
         }
 
         .logo h1 {
@@ -74,6 +78,21 @@
             color: #666;
             border-radius: 10px;
             transition: all 0.3s;
+        }
+
+        .nav-icon-circle {
+            width: 28px;
+            height: 28px;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 600;
+            background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
         }
 
         .nav-item a:hover,
@@ -258,8 +277,8 @@
     <!-- SIDEBAR -->
     <aside class="sidebar">
         <div class="logo">
-            <div class="logo-icon">📚</div>
-            <h1>Library System</h1>
+            <div class="logo-icon">LB</div>
+            <h1>LIBRA</h1>
         </div>
         <p class="welcome-text">Welcome, <strong sec:authentication="name"></strong></p>
 
@@ -267,19 +286,19 @@
         <ul class="nav-menu" sec:authorize="hasRole('LIBRARIAN')">
             <li class="nav-item">
                 <a href="/dashboard">
-                    <span>📊</span>
+                    <span class="nav-icon-circle">DB</span>
                     <span>Overview</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="/books">
-                    <span>📚</span>
+                    <span class="nav-icon-circle">BK</span>
                     <span>Manage Books</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="/loans" class="active">
-                    <span>🔄</span>
+                    <span class="nav-icon-circle">LN</span>
                     <span>Borrow / Return</span>
                 </a>
             </li>
@@ -289,25 +308,25 @@
         <ul class="nav-menu" sec:authorize="hasRole('ADMIN')">
             <li class="nav-item">
                 <a href="/dashboard">
-                    <span>📊</span>
+                    <span class="nav-icon-circle">DB</span>
                     <span>Overview</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="/books">
-                    <span>📚</span>
+                    <span class="nav-icon-circle">BK</span>
                     <span>Manage Books</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="/loans" class="active">
-                    <span>🔄</span>
+                    <span class="nav-icon-circle">LN</span>
                     <span>View Loans</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="/admin/users">
-                    <span>👥</span>
+                    <span class="nav-icon-circle">US</span>
                     <span>Manage Users</span>
                 </a>
             </li>
@@ -334,7 +353,7 @@
 
             <!-- HEADER -->
             <div class="page-header">
-                <h2>🔄 Borrow / Return</h2>
+                <h2>Borrow / Return</h2>
             </div>
 
             <!-- BORROW & RETURN FORMS -->

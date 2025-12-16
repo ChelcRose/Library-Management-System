@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Manage Users | Library MS</title>
+  <title>Manage Users | LIBRA</title>
 
   <style>
     * {
@@ -40,11 +40,15 @@
         width: 40px;
         height: 40px;
         background: linear-gradient(135deg, #a78bfa, #8b5cf6);
-        border-radius: 10px;
+        border-radius: 12px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 20px;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #fff;
     }
 
     .logo h1 {
@@ -70,6 +74,21 @@
         color: #666;
         border-radius: 10px;
         transition: 0.3s;
+    }
+
+    .nav-icon-circle {
+        width: 28px;
+        height: 28px;
+        border-radius: 999px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        font-weight: 600;
+        background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
     }
 
     .nav-item a:hover,
@@ -189,23 +208,23 @@
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="logo">
-      <div class="logo-icon">📚</div>
-      <h1>Library System</h1>
+      <div class="logo-icon">LB</div>
+      <h1>LIBRA</h1>
     </div>
     <p class="welcome-text">Welcome, <strong sec:authentication="name"></strong></p>
 
     <ul class="nav-menu">
       <li class="nav-item">
-        <a href="/dashboard">📊 Overview</a>
+        <a href="/dashboard"><span class="nav-icon-circle">DB</span> Overview</a>
       </li>
       <li class="nav-item">
-        <a href="/books">📚 Manage Books</a>
+        <a href="/books"><span class="nav-icon-circle">BK</span> Manage Books</a>
       </li>
       <li class="nav-item">
-        <a href="/loans">🔄 View Loans</a>
+        <a href="/loans"><span class="nav-icon-circle">LN</span> View Loans</a>
       </li>
       <li class="nav-item">
-        <a href="/admin/users" class="active">👥 Manage Users</a>
+        <a href="/admin/users" class="active"><span class="nav-icon-circle">US</span> Manage Users</a>
       </li>
     </ul>
   </aside>
@@ -223,7 +242,7 @@
     </div>
 
     <div class="page-header">
-      <h2>👥 Manage Users</h2>
+      <h2>Manage Users</h2>
     </div>
 
     <div class="card">
