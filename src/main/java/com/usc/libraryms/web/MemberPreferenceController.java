@@ -23,7 +23,7 @@ public class MemberPreferenceController {
     public String preferencesPage(Model model) {
         model.addAttribute("categories", Set.of(
                 "Fiction", "Non-Fiction", "Science", "Technology",
-                "History", "Fantasy", "Romance", "Mystery", "Children's Literature"
+                "History", "Fantasy", "Romance", "Mystery", "Children's Literature", "Adventure", "Young Adult"
         ));
         return "member-preferences";
     }

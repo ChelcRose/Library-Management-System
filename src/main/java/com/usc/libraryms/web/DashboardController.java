@@ -29,6 +29,7 @@ public class DashboardController {
     public String dashboard(
             @RequestParam(required = false) String q,
             @RequestParam(required = false) String filter,
+            @RequestParam(required = false) String genre,
             Authentication auth,
             Model model) {
 
@@ -86,7 +87,23 @@ public class DashboardController {
             }
         }
 
+        if (genre != null && !genre.isBlank()) {
+            allBooks = allBooks.stream()
+                    .filter(b -> genre.equalsIgnoreCase(b.getCategory()))
+                    .toList();
+
+            sectionTitle = genre + " Books";
+        }
+
+
         /* ================= MODEL ATTRIBUTES ================= */
+        model.addAttribute("availableBooks",
+                library.allBooks().stream().filter(Book::isAvailable).count());
+        model.addAttribute("genres", List.of(
+                "Fiction", "Non-Fiction", "Science", "Technology",
+                "History", "Fantasy", "Romance", "Mystery",
+                "Children's Literature", "Adventure", "Young Adult"
+        ));
 
         model.addAttribute("books", allBooks);
         model.addAttribute("q", q == null ? "" : q);
@@ -94,6 +111,7 @@ public class DashboardController {
 
         // ✅ NEW (for cards + title)
         model.addAttribute("sectionTitle", sectionTitle);
+        model.addAttribute("selectedGenre", genre == null ? "" : genre);
         model.addAttribute("allBooks", library.allBooks().size());
         model.addAttribute("recommendedBooks", recommended.size());
         model.addAttribute("borrowedBooks",

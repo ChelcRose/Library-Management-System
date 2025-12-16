@@ -611,26 +611,47 @@
                 </div>
                 </a>
 
-
-                <div class="stat-card blue">
-                    <div class="stat-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24"><path d="M7 7h10l-2-2m2 2l-2 2"></path><path d="M17 17H7l2-2m-2 2l2 2"></path></svg>
-                    </div>
-                    <div class="stat-info">
-                        <p>Borrowed Books</p>
-                        <h3 th:text="${borrowedBooks}">0</h3>
-                    </div>
-                </div>
-
+                <a href="/dashboard?filter=available" style="text-decoration:none">
                 <div class="stat-card pink">
                     <div class="stat-icon" aria-hidden="true">
                         <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 11a4 4 0 0 1 0-8"></path></svg>
                     </div>
                     <div class="stat-info">
-                        <p>Active Members</p>
-                        <h3 th:text="${activeMembers}">0</h3>
+                        <p>Available Books</p>
+                        <h3 th:text="${availableBooks}">0</h3>
                     </div>
                 </div>
+                </a>
+
+                <div class="stat-card blue">
+                    <div class="stat-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M4 6h16"></path>
+                            <path d="M6 12h12"></path>
+                            <path d="M10 18h4"></path>
+                        </svg>
+                    </div>
+
+                    <div class="stat-info" style="flex-direction:column; align-items:flex-start">
+                        <p>Sort by Genre</p>
+
+                        <form method="get" action="/dashboard" style="width:100%">
+                            <input type="hidden" name="filter" th:value="${filter}">
+                            <select name="genre"
+                                    onchange="this.form.submit()"
+                                    style="width:100%; padding:8px; border-radius:8px; border:1px solid #e5e7eb">
+                                <option value="">All Genres</option>
+                                <option th:each="g : ${genres}"
+                                        th:value="${g}"
+                                        th:text="${g}"
+                                        th:selected="${g == selectedGenre}">
+                                </option>
+
+                            </select>
+                        </form>
+                    </div>
+                </div>
+
 
             </div>
 
