@@ -6,6 +6,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class DashboardController {
@@ -17,17 +18,26 @@ public class DashboardController {
     }
 
     @GetMapping("/dashboard")
-    public String dashboard(Authentication auth, Model model) {
+    public String dashboard(
+            @RequestParam(required = false) String q,
+            @RequestParam(required = false) String filter,
+            Authentication auth,
+            Model model) {
 
-        model.addAttribute("username", auth.getName());
+        var allBooks = library.search(q);
 
-        // ✅ books for all roles
-        model.addAttribute("books", library.allBooks());
+        if ("available".equals(filter)) {
+            allBooks = allBooks.stream()
+                    .filter(Book::isAvailable)
+                    .toList();
+        }
 
-        // ✅ needed ONLY if admin/librarian sees add form
-        model.addAttribute("newBook", new Book());
+        model.addAttribute("books", allBooks);
+        model.addAttribute("q", q == null ? "" : q);
+        model.addAttribute("filter", filter == null ? "all" : filter);
 
         return "dashboard";
     }
+
 
 }
