@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <title>Dashboard | LIBRA</title>
+    <link rel="icon" type="image/png" href="/img/LIBRALOGO.png">
     <style>
         * {
             margin: 0;
@@ -37,11 +38,12 @@
         .logo-icon {
             width: 40px;
             height: 40px;
-            background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .logo h1 {
@@ -461,20 +463,15 @@
 
 <div class="container">
 
-    <!-- SIDEBAR -->
     <aside class="sidebar">
         <div class="logo">
-            <div class="logo-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24">
-                    <path d="M5 4h12a2 2 0 0 1 2 2v12H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path>
-                    <path d="M9 4v14"></path>
-                </svg>
+                <div class="logo-icon">
+                    <img src="/img/LIBRALOGO.png" alt="LIBRA logo">
             </div>
             <h1>LIBRA</h1>
         </div>
         <p class="welcome-text">Welcome, <strong sec:authentication="name"></strong></p>
 
-        <!-- LIBRARIAN NAVIGATION -->
         <ul class="nav-menu" sec:authorize="hasRole('LIBRARIAN')">
             <li class="nav-item">
                 <a href="/dashboard" class="active">
@@ -502,7 +499,6 @@
             </li>
         </ul>
 
-        <!-- ADMIN NAVIGATION -->
         <ul class="nav-menu" sec:authorize="hasRole('ADMIN')">
             <li class="nav-item">
                 <a href="/dashboard" class="active">
@@ -538,7 +534,6 @@
             </li>
         </ul>
 
-        <!-- MEMBER NAVIGATION -->
         <ul class="nav-menu" sec:authorize="hasRole('MEMBER')">
             <li class="nav-item">
                 <a href="/dashboard" class ="active">
@@ -560,7 +555,6 @@
 
     </aside>
 
-    <!-- MAIN CONTENT -->
     <main class="main-content">
 
         <div class="top-bar">
@@ -577,13 +571,11 @@
 
         <section class="dashboard">
 
-            <!-- HEADER -->
             <div class="dashboard-header">
                 <h2>Dashboard Overview</h2>
-                <p>Welcome to your library management dashboard</p>
+                <p>Welcome to your LIBRA dashboard</p>
             </div>
 
-            <!-- ALERT MESSAGES -->
             <div th:if="${success}" class="alert alert-success">
                 <span th:text="${success}"></span>
             </div>
@@ -594,7 +586,6 @@
                 <span th:text="${fine}"></span>
             </div>
 
-            <!-- STATS CARDS -->
             <div class="stats-grid">
 
                 <div class="stat-card purple">
@@ -639,7 +630,6 @@
 
             </div>
 
-            <!-- MEMBER VIEW -->
             <div sec:authorize="hasRole('MEMBER')" class="card">
 
                 <h3 class="section-title">Available Books</h3>
@@ -691,7 +681,6 @@
                 </div>
             </div>
 
-            <!-- LIBRARIAN -->
             <div sec:authorize="hasRole('LIBRARIAN')" class="card">
                 <h3 class="section-title">Librarian Options</h3>
                 <ul class="action-list">
@@ -700,7 +689,6 @@
                 </ul>
             </div>
 
-            <!-- ADMIN -->
             <div sec:authorize="hasRole('ADMIN')" class="card">
                 <h3 class="section-title">Administrator Options</h3>
                 <ul class="action-list">

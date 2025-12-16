@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
+    <title>Books | LIBRA</title>
+    <link rel="icon" type="image/png" href="/img/LIBRALOGO.png">
     <style>
         /* ===== BASE ===== */
         *{margin:0;padding:0;box-sizing:border-box}
@@ -19,9 +21,9 @@
         .logo{display:flex;align-items:center;gap:12px;margin-bottom:10px}
         .logo-icon{
             width:40px;height:40px;
-            background:linear-gradient(135deg,#a78bfa,#8b5cf6);
-            border-radius:10px;
-            display:flex;align-items:center;justify-content:center
+        }
+        .logo-icon img{
+            width:100%;height:100%;object-fit:contain;
         }
         .logo-icon svg,
         .nav-icon svg{
@@ -110,11 +112,10 @@
 
 <div class="container">
 
-    <!-- ===== SIDEBAR ===== -->
     <aside class="sidebar">
         <div class="logo">
-            <div class="logo-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M5 4h12a2 2 0 0 1 2 2v12H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path><path d="M9 4v14"></path></svg>
+            <div class="logo-icon">
+                <img src="/img/LIBRALOGO.png" alt="LIBRA logo">
             </div>
             <h1>LIBRA</h1>
         </div>
@@ -122,7 +123,6 @@
             Welcome, <strong sec:authentication="name"></strong>
         </p>
 
-        <!-- LIBRARIAN -->
         <ul class="nav-menu" sec:authorize="hasRole('LIBRARIAN')">
             <li class="nav-item">
                 <a href="/dashboard">
@@ -150,7 +150,6 @@
             </li>
         </ul>
 
-        <!-- ADMIN -->
         <ul class="nav-menu" sec:authorize="hasRole('ADMIN')">
             <li class="nav-item">
                 <a href="/dashboard">
@@ -187,7 +186,6 @@
         </ul>
     </aside>
 
-    <!-- ===== MAIN ===== -->
     <main class="main-content">
 
         <div class="page-header">
@@ -241,7 +239,6 @@
     </main>
 </div>
 
-<!-- ===== MODAL ===== -->
 <div class="modal" id="editModal">
     <form class="modal-box" method="post" action="/books/update">
         <h3>Edit Book</h3>

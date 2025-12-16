@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <title>Loans | LIBRA</title>
+    <link rel="icon" type="image/png" href="/img/LIBRALOGO.png">
     <style>
         * {
             margin: 0;
@@ -37,11 +39,12 @@
         .logo-icon {
             width: 40px;
             height: 40px;
-            background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .logo h1 {
@@ -275,17 +278,15 @@
 
 <div class="container">
 
-    <!-- SIDEBAR -->
     <aside class="sidebar">
         <div class="logo">
-            <div class="logo-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M5 4h12a2 2 0 0 1 2 2v12H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path><path d="M9 4v14"></path></svg>
+            <div class="logo-icon">
+                <img src="/img/LIBRALOGO.png" alt="LIBRA logo">
             </div>
             <h1>LIBRA</h1>
         </div>
         <p class="welcome-text">Welcome, <strong sec:authentication="name"></strong></p>
 
-        <!-- LIBRARIAN NAVIGATION -->
         <ul class="nav-menu" sec:authorize="hasRole('LIBRARIAN')">
             <li class="nav-item">
                 <a href="/dashboard">
@@ -313,7 +314,6 @@
             </li>
         </ul>
 
-        <!-- ADMIN NAVIGATION -->
         <ul class="nav-menu" sec:authorize="hasRole('ADMIN')">
             <li class="nav-item">
                 <a href="/dashboard">
@@ -350,7 +350,6 @@
         </ul>
     </aside>
 
-    <!-- MAIN CONTENT -->
     <main class="main-content">
 
         <div class="top-bar">
@@ -367,15 +366,12 @@
 
         <section>
 
-            <!-- HEADER -->
             <div class="page-header">
                 <h2>Borrow / Return</h2>
             </div>
 
-            <!-- BORROW & RETURN FORMS -->
             <div class="forms-grid">
                 
-                <!-- BORROW FORM -->
                 <div class="card">
                     <h3 class="section-title">Borrow</h3>
                     <form method="post" action="/loans/borrow" class="loan-form">
@@ -386,7 +382,6 @@
                     </form>
                 </div>
 
-                <!-- RETURN FORM -->
                 <div class="card">
                     <h3 class="section-title">Return</h3>
                     <form method="post" action="/loans/return" class="loan-form return-form">
@@ -397,7 +392,6 @@
 
             </div>
 
-            <!-- LOAN RECORDS -->
             <div class="card">
                 <h3 class="section-title">Loan Records</h3>
 
