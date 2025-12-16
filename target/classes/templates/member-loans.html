@@ -51,6 +51,27 @@
       color: #8b5cf6;
     }
 
+    .logo-icon svg,
+    .nav-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: #6b21a8;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .nav-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: #f3f0ff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     .welcome-text {
       color: #a78bfa;
       font-size: 14px;
@@ -379,7 +400,9 @@
   <!-- ===== SIDEBAR ===== -->
   <aside class="sidebar">
     <div class="logo">
-      <div class="logo-icon"></div>
+      <div class="logo-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M5 4h12a2 2 0 0 1 2 2v12H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path><path d="M9 4v14"></path></svg>
+      </div>
       <h1>LIBRA</h1>
     </div>
 
@@ -390,11 +413,17 @@
     <ul class="nav-menu" sec:authorize="hasRole('MEMBER')">
       <li class="nav-item">
         <a href="/dashboard">
+          <span class="nav-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 3v9h9"></path><path d="M21 12a9 9 0 1 1-9-9"></path></svg>
+          </span>
           <span>Overview</span>
         </a>
       </li>
       <li class="nav-item">
         <a href="/member/loans" class="active">
+          <span class="nav-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M6 4h10a2 2 0 0 1 2 2v12H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path><path d="M8 4v14"></path></svg>
+          </span>
           <span>My Borrowed Books</span>
         </a>
       </li>
