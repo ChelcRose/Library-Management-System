@@ -1,26 +1,26 @@
-C:\Users\meizi\Documents\CS '25-'26\OOP\Library-Management-System\src\main\java\com\usc\libraryms\config\DataLoader.java
-C:\Users\meizi\Documents\CS '25-'26\OOP\Library-Management-System\src\main\java\com\usc\libraryms\config\SecurityConfig.java
-C:\Users\meizi\Documents\CS '25-'26\OOP\Library-Management-System\src\main\java\com\usc\libraryms\config\WebConfig.java
-C:\Users\meizi\Documents\CS '25-'26\OOP\Library-Management-System\src\main\java\com\usc\libraryms\LibrarymsApplication.java
-C:\Users\meizi\Documents\CS '25-'26\OOP\Library-Management-System\src\main\java\com\usc\libraryms\model\Admin.java
-C:\Users\meizi\Documents\CS '25-'26\OOP\Library-Management-System\src\main\java\com\usc\libraryms\model\Book.java
-C:\Users\meizi\Documents\CS '25-'26\OOP\Library-Management-System\src\main\java\com\usc\libraryms\model\Librarian.java
-C:\Users\meizi\Documents\CS '25-'26\OOP\Library-Management-System\src\main\java\com\usc\libraryms\model\Loan.java
-C:\Users\meizi\Documents\CS '25-'26\OOP\Library-Management-System\src\main\java\com\usc\libraryms\model\Member.java
-C:\Users\meizi\Documents\CS '25-'26\OOP\Library-Management-System\src\main\java\com\usc\libraryms\model\Role.java
-C:\Users\meizi\Documents\CS '25-'26\OOP\Library-Management-System\src\main\java\com\usc\libraryms\model\User.java
-C:\Users\meizi\Documents\CS '25-'26\OOP\Library-Management-System\src\main\java\com\usc\libraryms\repo\BookRepository.java
-C:\Users\meizi\Documents\CS '25-'26\OOP\Library-Management-System\src\main\java\com\usc\libraryms\repo\LoanRepository.java
-C:\Users\meizi\Documents\CS '25-'26\OOP\Library-Management-System\src\main\java\com\usc\libraryms\repo\UserRepository.java
-C:\Users\meizi\Documents\CS '25-'26\OOP\Library-Management-System\src\main\java\com\usc\libraryms\service\FinePolicy.java
-C:\Users\meizi\Documents\CS '25-'26\OOP\Library-Management-System\src\main\java\com\usc\libraryms\service\LibraryService.java
-C:\Users\meizi\Documents\CS '25-'26\OOP\Library-Management-System\src\main\java\com\usc\libraryms\service\PesoFinePolicy.java
-C:\Users\meizi\Documents\CS '25-'26\OOP\Library-Management-System\src\main\java\com\usc\libraryms\web\AdminController.java
-C:\Users\meizi\Documents\CS '25-'26\OOP\Library-Management-System\src\main\java\com\usc\libraryms\web\AuthController.java
-C:\Users\meizi\Documents\CS '25-'26\OOP\Library-Management-System\src\main\java\com\usc\libraryms\web\BookController.java
-C:\Users\meizi\Documents\CS '25-'26\OOP\Library-Management-System\src\main\java\com\usc\libraryms\web\DashboardController.java
-C:\Users\meizi\Documents\CS '25-'26\OOP\Library-Management-System\src\main\java\com\usc\libraryms\web\dto\RegisterForm.java
-C:\Users\meizi\Documents\CS '25-'26\OOP\Library-Management-System\src\main\java\com\usc\libraryms\web\HomeController.java
-C:\Users\meizi\Documents\CS '25-'26\OOP\Library-Management-System\src\main\java\com\usc\libraryms\web\LoanController.java
-C:\Users\meizi\Documents\CS '25-'26\OOP\Library-Management-System\src\main\java\com\usc\libraryms\web\MemberController.java
-C:\Users\meizi\Documents\CS '25-'26\OOP\Library-Management-System\src\main\java\com\usc\libraryms\web\RegisterController.java
+/Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/LibrarymsApplication.java
+/Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/config/DataLoader.java
+/Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/config/SecurityConfig.java
+/Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/config/WebConfig.java
+/Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/model/Admin.java
+/Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/model/Book.java
+/Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/model/Librarian.java
+/Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/model/Loan.java
+/Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/model/Member.java
+/Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/model/Role.java
+/Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/model/User.java
+/Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/repo/BookRepository.java
+/Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/repo/LoanRepository.java
+/Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/repo/UserRepository.java
+/Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/service/FinePolicy.java
+/Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/service/LibraryService.java
+/Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/service/PesoFinePolicy.java
+/Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/web/AdminController.java
+/Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/web/AuthController.java
+/Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/web/BookController.java
+/Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/web/DashboardController.java
+/Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/web/HomeController.java
+/Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/web/LoanController.java
+/Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/web/MemberController.java
+/Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/web/RegisterController.java
+/Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/web/dto/RegisterForm.java

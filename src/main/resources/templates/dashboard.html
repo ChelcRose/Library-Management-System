@@ -291,6 +291,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 24px;
+            align-items: start;
         }
 
         .book-card {
@@ -656,11 +657,23 @@
 
 <script>
     function toggleDetails(img) {
-        const details = img.parentElement.querySelector(".book-details");
-        details.style.display =
-            details.style.display === "block" ? "none" : "block";
+        const card = img.closest(".book-card");
+        const targetDetails = card.querySelector(".book-details");
+
+        const isOpen = targetDetails.style.display === "block";
+
+
+        document.querySelectorAll(".book-details").forEach(d => {
+            d.style.display = "none";
+        });
+
+
+        if (!isOpen) {
+            targetDetails.style.display = "block";
+        }
     }
 </script>
+
 
 </body>
 </html>
