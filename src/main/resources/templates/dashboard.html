@@ -599,7 +599,7 @@
                 </div>
                 </a>
 
-                <a href="/dashboard?filter=available" style="text-decoration:none">
+                <a href="/dashboard?filter=recommended" style="text-decoration:none">
                 <div class="stat-card green">
                     <div class="stat-icon" aria-hidden="true">
                         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M9 12l2 2 4-4"></path></svg>
@@ -636,7 +636,7 @@
 
             <div sec:authorize="hasRole('MEMBER')" class="card">
 
-                <h3 class="section-title">Available Books</h3>
+                <h3 class="section-title" th:text="${sectionTitle}">Books</h3>
                 <form method="get" action="/dashboard" style="margin-bottom:20px; display:flex; gap:12px">
                     <input type="hidden" name="filter" th:value="${filter}">
                     <input type="text"

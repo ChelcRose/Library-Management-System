@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 public class DashboardController {
 
@@ -46,44 +48,58 @@ public class DashboardController {
 
         var allBooks = library.search(q);
 
-        /* ================= MEMBER RECOMMENDATIONS ================= */
+        String sectionTitle = "All Books"; // ✅ NEW
+        List<Book> recommended = List.of(); // ✅ NEW
+
+        /* ================= MEMBER LOGIC ================= */
 
         if (currentUser instanceof Member member) {
 
-            // 🔹 DEFAULT: show recommended books
+            recommended = library.recommendedFor(member); // ✅ NEW
+
             if (filter == null || filter.equals("recommended")) {
-                allBooks = library.recommendedFor(member);
+                allBooks = recommended;
+                sectionTitle = "Recommended Books";
             }
 
-            // 🔹 OVERRIDE: show all books
             if ("all".equals(filter)) {
                 allBooks = library.search(q);
+                sectionTitle = "All Books";
             }
 
-            // 🔹 OVERRIDE: show available books
             if ("available".equals(filter)) {
                 allBooks = library.search(q).stream()
                         .filter(Book::isAvailable)
                         .toList();
+                sectionTitle = "Available Books";
             }
         }
 
-        /* ================= NON-MEMBER USERS ================= */
+        /* ================= NON-MEMBER USERS (UNCHANGED LOGIC) ================= */
 
         if (!(currentUser instanceof Member)) {
-            // Admin / Librarian logic remains unchanged
             if ("available".equals(filter)) {
                 allBooks = allBooks.stream()
                         .filter(Book::isAvailable)
                         .toList();
+                sectionTitle = "Available Books";
             }
         }
 
-        /* ================= MODEL ================= */
+        /* ================= MODEL ATTRIBUTES ================= */
 
         model.addAttribute("books", allBooks);
         model.addAttribute("q", q == null ? "" : q);
         model.addAttribute("filter", filter == null ? "recommended" : filter);
+
+        // ✅ NEW (for cards + title)
+        model.addAttribute("sectionTitle", sectionTitle);
+        model.addAttribute("allBooks", library.allBooks().size());
+        model.addAttribute("recommendedBooks", recommended.size());
+        model.addAttribute("borrowedBooks",
+                library.allBooks().stream().filter(b -> !b.isAvailable()).count());
+        model.addAttribute("activeMembers",
+                users.findAll().stream().filter(u -> u instanceof Member).count());
 
         return "dashboard";
     }
