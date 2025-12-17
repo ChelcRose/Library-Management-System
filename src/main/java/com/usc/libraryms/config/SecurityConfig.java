@@ -23,6 +23,8 @@ public class SecurityConfig {
                         .requestMatchers("/books/**").hasAnyRole("ADMIN","LIBRARIAN")
                         .requestMatchers("/member/**").hasRole("MEMBER")
                         .requestMatchers("/loans/**").hasAnyRole("ADMIN","LIBRARIAN","MEMBER")
+                        .requestMatchers("/loans/reset").hasRole("ADMIN")
+
                         .anyRequest().authenticated()
                 )
 

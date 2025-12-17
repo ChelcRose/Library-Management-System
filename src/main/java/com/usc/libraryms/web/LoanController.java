@@ -79,6 +79,15 @@ public class LoanController {
             ra.addFlashAttribute("error", e.getMessage());
         }
 
+
         return "redirect:/loans";
     }
+
+    @PostMapping("/reset")
+    public String resetAllLoans(RedirectAttributes ra) {
+        library.resetAllLoans();
+        ra.addFlashAttribute("success", "All loans have been reset successfully.");
+        return "redirect:/loans";
+    }
+
 }

@@ -73,6 +73,19 @@ public class LibraryService {
         return "B" + nextId;
     }
 
+    @Transactional
+    public void resetAllLoans() {
+        // 1. Restore availability of all books
+        for (Book book : books.findAll()) {
+            book.setAvailableCopies(book.getTotalCopies());
+            books.save(book);
+        }
+
+        // 2. Delete all loan records
+        loans.deleteAll();
+    }
+
+
     public List<Book> recommendedFor(Member member) {
         if (member.getPreferredCategories().isEmpty()) {
             return books.findAll();
