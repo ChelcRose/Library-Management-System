@@ -496,9 +496,14 @@
                         <svg viewBox="0 0 24 24"><path d="M6 4h10a2 2 0 0 1 2 2v12H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path><path d="M8 4v14"></path></svg>
                     </div>
                     <div class="stat-info">
-                        <p>All Books</p>
-                        <h3 th:text="${allBooks}">0</h3>
+                        <p>
+                            All Books
+                            <span th:text="'(' + ${allBooks} + ')'"
+                                  style="font-size:14px; color:#6b7280; font-weight:400;">
+        </span>
+                        </p>
                     </div>
+
                 </div>
                 </a>
 
@@ -508,9 +513,14 @@
                         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M9 12l2 2 4-4"></path></svg>
                     </div>
                     <div class="stat-info">
-                        <p>Recommended Books</p>
-                        <h3 th:text="${recommendedBooks}">0</h3>
+                        <p>
+                            Recommended Books
+                            <span th:text="'(' + ${recommendedBooks} + ')'"
+                                  style="font-size:14px; color:#6b7280; font-weight:400;">
+        </span>
+                        </p>
                     </div>
+
                 </div>
                 </a>
 
@@ -520,9 +530,14 @@
                         <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 11a4 4 0 0 1 0-8"></path></svg>
                     </div>
                     <div class="stat-info">
-                        <p>Available Books</p>
-                        <h3 th:text="${availableBooks}">0</h3>
+                        <p>
+                            Available Books
+                            <span th:text="'(' + ${availableBooks} + ')'"
+                                  style="font-size:14px; color:#6b7280; font-weight:400;">
+        </span>
+                        </p>
                     </div>
+
                 </div>
                 </a>
 
