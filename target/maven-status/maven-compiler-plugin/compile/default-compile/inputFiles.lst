@@ -23,5 +23,6 @@
 /Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/web/LoanController.java
 /Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/web/MemberController.java
 /Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/web/MemberPreferenceController.java
+/Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/web/ProfileController.java
 /Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/web/RegisterController.java
 /Users/chelsearose/Documents/GitHub/Library-Management-System/src/main/java/com/usc/libraryms/web/dto/RegisterForm.java
