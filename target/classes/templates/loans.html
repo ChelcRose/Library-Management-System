@@ -4,14 +4,10 @@
     <title>Loans | LIBRA</title>
     <link rel="icon" type="image/png" href="/img/LIBRALOGO.png">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
             background: #f8f7ff;
             color: #333;
         }
@@ -21,7 +17,7 @@
             min-height: 100vh;
         }
 
-        /* SIDEBAR */
+        /* ===== SIDEBAR ===== */
         .sidebar {
             width: 240px;
             background: #fff;
@@ -52,43 +48,20 @@
             color: #8b5cf6;
         }
 
-        .logo-icon svg,
-        .nav-icon svg {
-            width: 22px;
-            height: 22px;
-            stroke: #6b21a8;
-            fill: none;
-            stroke-width: 1.8;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        .nav-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 10px;
-            background: #f3f0ff;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .welcome-text {
-            color: #a78bfa;
-            font-size: 14px;
-            margin-bottom: 30px;
-            padding-left: 5px;
-        }
-
-        .nav-menu {
-            list-style: none;
-        }
-
+.welcome-text {
+    color: #a78bfa;
+    font-size: 14px;
+    margin-bottom: 30px;
+    padding-left: 5px;
+}
         .nav-item {
-            margin-bottom: 5px;
-        }
+    margin-bottom: 5px;
+}
 
-        .nav-item a {
+
+        .nav-menu { list-style: none; }
+
+            .nav-item a {
             display: flex;
             align-items: center;
             gap: 12px;
@@ -104,161 +77,172 @@
             background: #f3f0ff;
             color: #8b5cf6;
         }
-
         .nav-item a.active {
             font-weight: 600;
         }
 
-        /* MAIN CONTENT */
-        .main-content {
-            flex: 1;
-            padding: 30px 40px;
-            overflow-y: auto;
-        }
-
-        .top-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .username {
-            color: #8b5cf6;
-            font-weight: 600;
-        }
-
-        .logout-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
-            color: #fff;
-            border: none;
+        .nav-icon {
+            width: 32px;
+            height: 32px;
             border-radius: 10px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: transform 0.2s;
+            background: #f3f0ff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .logout-btn:hover {
-            transform: translateY(-2px);
+        .nav-icon svg {
+            width: 22px;
+            height: 22px;
+            stroke: #6b21a8;
+            fill: none;
+            stroke-width: 1.8;
         }
 
-        .page-header h2 {
-            font-size: 28px;
-            margin-bottom: 30px;
-            color: #1f1f1f;
-        }
+            /* MAIN CONTENT */
+            .main-content {
+                flex: 1;
+                padding: 30px 40px;
+                overflow-y: auto;
+            }
 
-        /* CARD */
-        .card {
-            background: #fff;
-            padding: 30px;
-            border-radius: 16px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-        }
+            .top-bar {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 10px;
+            }
 
-        .section-title {
-            font-size: 20px;
-            margin-bottom: 20px;
-            color: #1f1f1f;
-            font-weight: 600;
-        }
+            .user-info {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            }
 
-        /* FORMS GRID */
-        .forms-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 30px;
-            margin-bottom: 30px;
-        }
+            .username {
+                color: #8b5cf6;
+                font-weight: 600;
+            }
 
-        /* FORM STYLING */
-        .loan-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
+            .logout-btn {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                padding: 10px 20px;
+                background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+                color: #fff;
+                border: none;
+                border-radius: 10px;
+                cursor: pointer;
+                font-size: 14px;
+                transition: transform 0.2s;
+            }
 
-        .loan-form input {
-            padding: 12px 18px;
-            border: 2px solid #e5e7eb;
-            border-radius: 10px;
-            font-size: 15px;
-            transition: border-color 0.3s;
-        }
+            .logout-btn:hover {
+                transform: translateY(-2px);
+            }
 
-        .loan-form input:focus {
-            outline: none;
-            border-color: #8b5cf6;
-        }
+            /* CARD */
+            .card {
+                background: #fff;
+                padding: 30px;
+                border-radius: 16px;
+                margin-bottom: 30px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            }
 
-        .loan-form button {
-            padding: 14px;
-            border: none;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
-            color: #fff;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
+            .section-title {
+                font-size: 20px;
+                margin-bottom: 20px;
+                color: #1f1f1f;
+                font-weight: 600;
+            }
 
-        .loan-form button:hover {
-            transform: translateY(-2px);
-        }
+            /* FORMS GRID */
+            .forms-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+                gap: 30px;
+                margin-bottom: 30px;
+            }
 
-        .return-form button {
-            background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
-        }
+            /* FORM STYLING */
+            .loan-form {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
 
-        /* LOAN TABLE */
-        .loan-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
+            .loan-form input {
+                padding: 12px 18px;
+                border: 2px solid #e5e7eb;
+                border-radius: 10px;
+                font-size: 15px;
+                transition: border-color 0.3s;
+            }
 
-        .loan-table th {
-            background: #f9f7ff;
-            padding: 15px;
-            text-align: left;
-            font-weight: 600;
-            color: #1f1f1f;
-            border-bottom: 2px solid #e5e7eb;
-        }
+            .loan-form input:focus {
+                outline: none;
+                border-color: #8b5cf6;
+            }
 
-        .loan-table td {
-            padding: 15px;
-            border-bottom: 1px solid #f3f4f6;
-        }
+            .loan-form button {
+                padding: 14px;
+                border: none;
+                border-radius: 10px;
+                background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+                color: #fff;
+                font-size: 16px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: transform 0.2s;
+            }
 
-        .loan-table tr:hover {
-            background: #fafafa;
-        }
+            .loan-form button:hover {
+                transform: translateY(-2px);
+            }
 
-        /* STATUS INDICATORS */
-        .status-returned {
-            color: #10b981;
-            font-weight: 600;
-        }
+            .return-form button {
+                background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+            }
 
-        .status-active {
-            color: #f59e0b;
-            font-weight: 600;
-        }
+            /* LOAN TABLE */
+            .loan-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
 
-        /* RESPONSIVE */
+            .loan-table th {
+                background: #f9f7ff;
+                padding: 15px;
+                text-align: left;
+                font-weight: 600;
+                color: #1f1f1f;
+                border-bottom: 2px solid #e5e7eb;
+            }
+
+            .loan-table td {
+                padding: 15px;
+                border-bottom: 1px solid #f3f4f6;
+            }
+
+            .loan-table tr:hover {
+                background: #fafafa;
+            }
+
+            /* STATUS INDICATORS */
+            .status-returned {
+                color: #10b981;
+                font-weight: 600;
+            }
+
+            .status-active {
+                color: #f59e0b;
+                font-weight: 600;
+            }
+
+            /* RESPONSIVE */
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
@@ -268,87 +252,18 @@
                 width: 100%;
             }
 
-            .forms-grid {
+            .stats-grid {
                 grid-template-columns: 1fr;
             }
         }
+
     </style>
 </head>
 <body>
 
 <div class="container">
 
-    <aside class="sidebar">
-        <div class="logo">
-            <div class="logo-icon">
-                <img src="/img/LIBRALOGO.png" alt="LIBRA logo">
-            </div>
-            <h1>LIBRA</h1>
-        </div>
-        <p class="welcome-text">Welcome, <strong sec:authentication="name"></strong></p>
-
-        <ul class="nav-menu" sec:authorize="hasRole('LIBRARIAN')">
-            <li class="nav-item">
-                <a href="/dashboard">
-                    <span class="nav-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24"><path d="M12 3v9h9"></path><path d="M21 12a9 9 0 1 1-9-9"></path></svg>
-                    </span>
-                    <span>Overview</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/books">
-                    <span class="nav-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24"><path d="M6 4h10a2 2 0 0 1 2 2v12H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path><path d="M8 4v14"></path></svg>
-                    </span>
-                    <span>Manage Books</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/loans" class="active">
-                    <span class="nav-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24"><path d="M7 7h10l-2-2m2 2l-2 2"></path><path d="M17 17H7l2-2m-2 2l2 2"></path></svg>
-                    </span>
-                    <span>Borrow / Return</span>
-                </a>
-            </li>
-        </ul>
-
-        <ul class="nav-menu" sec:authorize="hasRole('ADMIN')">
-            <li class="nav-item">
-                <a href="/dashboard">
-                    <span class="nav-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24"><path d="M12 3v9h9"></path><path d="M21 12a9 9 0 1 1-9-9"></path></svg>
-                    </span>
-                    <span>Overview</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/books">
-                    <span class="nav-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24"><path d="M6 4h10a2 2 0 0 1 2 2v12H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path><path d="M8 4v14"></path></svg>
-                    </span>
-                    <span>Manage Books</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/loans" class="active">
-                    <span class="nav-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24"><path d="M7 7h10l-2-2m2 2l-2 2"></path><path d="M17 17H7l2-2m-2 2l2 2"></path></svg>
-                    </span>
-                    <span>View Loans</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/admin/users">
-                    <span class="nav-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 11a4 4 0 0 1 0-8"></path></svg>
-                    </span>
-                    <span>Manage Users</span>
-                </a>
-            </li>
-        </ul>
-    </aside>
+    <div th:replace="fragments/sidebar :: sidebar('loans')"></div>
 
     <main class="main-content">
 
