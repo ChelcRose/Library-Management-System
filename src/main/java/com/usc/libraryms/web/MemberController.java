@@ -41,7 +41,6 @@ public class MemberController {
 
         String memberId = user.getUserId();
 
-        // Get active loans (not returned)
         List<Loan> activeLoanList = library.activeLoansByMember(memberId);
         List<Map<String, Object>> activeLoansWithBooks = activeLoanList.stream()
                 .map(loan -> {
@@ -53,7 +52,6 @@ public class MemberController {
                 })
                 .collect(Collectors.toList());
 
-        // Get returned loans (history)
         List<Loan> allLoans = library.loansByMember(memberId);
         List<Map<String, Object>> returnedLoansWithBooks = allLoans.stream()
                 .filter(Loan::isReturned)
@@ -67,7 +65,7 @@ public class MemberController {
                 .sorted((a, b) -> {
                     Loan loanA = (Loan) a.get("loan");
                     Loan loanB = (Loan) b.get("loan");
-                    // Sort by return date descending (most recent first)
+
                     if (loanA.getReturnDate() != null && loanB.getReturnDate() != null) {
                         return loanB.getReturnDate().compareTo(loanA.getReturnDate());
                     }

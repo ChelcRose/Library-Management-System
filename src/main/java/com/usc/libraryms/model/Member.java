@@ -14,7 +14,6 @@ public class Member extends User {
     @ElementCollection
     private Set<String> preferredCategories = new HashSet<>();
 
-    // ✅ change primitive boolean → wrapper Boolean
     private Boolean preferencesSet = false;
 
     public Member() {}

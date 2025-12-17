@@ -20,7 +20,6 @@ public class DashboardController {
     private final LibraryService library;
     private final UserRepository users;
 
-    // ✅ FIX: inject UserRepository
     public DashboardController(LibraryService library, UserRepository users) {
         this.library = library;
         this.users = users;
@@ -41,7 +40,6 @@ public class DashboardController {
             currentUser = users.findByUsername(auth.getName())
                     .orElseThrow(() -> new IllegalStateException("User not found"));
 
-            // ✅ FIRST-TIME MEMBER REDIRECT (UNCHANGED)
             if (currentUser instanceof Member m && !m.isPreferencesSet()) {
                 return "redirect:/member/preferences";
             }
@@ -51,8 +49,8 @@ public class DashboardController {
 
         var allBooks = library.search(q);
 
-        String sectionTitle = "All Books"; // ✅ NEW
-        List<Book> recommended = List.of(); // ✅ NEW
+        String sectionTitle = "All Books";
+        List<Book> recommended = List.of();
 
         /* ================= MEMBER LOGIC ================= */
 

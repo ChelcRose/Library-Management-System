@@ -53,8 +53,8 @@ public class RegisterController {
 
     private String generateNextUserId() {
         int nextId = users.findAllUserIds().stream()
-                .filter(id -> id.matches("U\\d+")) // ✅ ONLY U1, U2, U3...
-                .map(id -> id.substring(1))        // remove "U"
+                .filter(id -> id.matches("U\\d+"))
+                .map(id -> id.substring(1))
                 .mapToInt(Integer::parseInt)
                 .max()
                 .orElse(0) + 1;

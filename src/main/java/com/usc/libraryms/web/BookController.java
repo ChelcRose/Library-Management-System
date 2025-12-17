@@ -41,7 +41,6 @@ public class BookController {
     public String addBook(@ModelAttribute("newBook") Book b,
                           @RequestParam("coverFile") MultipartFile file) {
 
-        // auto-generate book ID
         b.setId(library.generateNextBookId());
 
         try {
