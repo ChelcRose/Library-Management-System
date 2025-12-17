@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Settings | LIBRA</title>
+  <link rel="icon" type="image/png" href="/img/LIBRALOGO.png">
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+        background: #f8f7ff;
+        color: #333;
+    }
+
+    .container {
+        display: flex;
+        min-height: 100vh;
+    }
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.username {
+    color: #8b5cf6;
+    font-weight: 600;
+}
+
+.logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: transform 0.2s;
+}
+
+.logout-btn:hover {
+    transform: translateY(-2px);
+}
+
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+        width: 240px;
+        background: #fff;
+        padding: 30px 20px;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 10px;
+    }
+
+    .logo-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .logo-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .logo h1 {
+        font-size: 20px;
+        color: #8b5cf6;
+    }
+
+
+        .welcome-text {
+            color: #a78bfa;
+            font-size: 14px;
+            margin-bottom: 30px;
+            padding-left: 5px;
+        }
+
+    .nav-menu { list-style: none; }
+
+        .nav-item a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            text-decoration: none;
+            color: #666;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+        .nav-item {
+    margin-bottom: 5px;
+}
+
+    .nav-item a:hover,
+    .nav-item a.active {
+        background: #f3f0ff;
+        color: #8b5cf6;
+        font-weight: 600;
+    }
+
+    .nav-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 10px;
+        background: #f3f0ff;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nav-icon svg {
+        width: 22px;
+        height: 22px;
+        stroke: #6b21a8;
+        fill: none;
+        stroke-width: 1.8;
+    }
+
+    /* ===== MAIN ===== */
+    .main-content {
+        flex: 1;
+        padding: 40px;
+    }
+
+    .card {
+        background: #fff;
+        padding: 30px;
+        border-radius: 16px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        margin-bottom: 30px;
+        max-width: 700px;
+    }
+
+    h2 { font-size: 28px; margin-bottom: 10px; }
+    .subtitle { color: #8b5cf6; margin-bottom: 25px; }
+
+    h3 { font-size: 18px; margin-bottom: 15px; }
+
+    .info p { margin: 8px 0; font-size: 14px; }
+    .info strong { color: #6b21a8; }
+
+    input[type="password"] {
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 10px;
+        border: 2px solid #e5e7eb;
+        margin-bottom: 14px;
+    }
+
+    .btn {
+        padding: 12px 20px;
+        border-radius: 10px;
+        border: none;
+        background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .alert-error {
+        background: #fee2e2;
+        color: #991b1b;
+        padding: 12px 16px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+
+    .alert-success {
+        background: #dcfce7;
+        color: #166534;
+        padding: 12px 16px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+
+    .genres {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .genres label {
+        background: #fafafa;
+        padding: 10px 12px;
+        border-radius: 10px;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .genres label:hover {
+        background: #f3f0ff;
+    }
+
+    .profile-cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-cards .card {
+    width: 100%;
+    max-width: 700px;
+}
+
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- ===== SIDEBAR ===== -->
+  <div th:replace="fragments/sidebar :: sidebar('profile')"></div>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="main-content">
+    <div th:replace="fragments/topbar :: topbar"></div>
+    <div class="profile-cards">
+
+    <div class="card">
+      <h2>Profile Settings</h2>
+      <p class="subtitle">Manage your account information</p>
+
+      <div class="info">
+        <p><strong>Name:</strong> <span th:text="${user.name}"></span></p>
+        <p><strong>Username:</strong> <span th:text="${user.username}"></span></p>
+        <p><strong>Role:</strong> <span th:text="${user.role}"></span></p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Change Password</h3>
+
+      <div th:if="${passwordError}" class="alert-error"
+           th:text="${passwordError}"></div>
+
+      <div th:if="${param.passwordUpdated}" class="alert-success">
+        Password updated successfully.
+      </div>
+
+      <form method="post" action="/profile/password">
+        <input type="password" name="oldPassword" placeholder="Current password" required>
+        <input type="password" name="newPassword" placeholder="New password" required>
+        <button class="btn">Update Password</button>
+      </form>
+    </div>
+
+    <div class="card" sec:authorize="hasRole('MEMBER')">
+      <h3>Preferred Genres</h3>
+
+      <div th:if="${param.preferencesUpdated}" class="alert-success">
+        Preferences updated successfully.
+      </div>
+
+      <form method="post" action="/profile/preferences">
+        <div class="genres">
+          <label th:each="g : ${genres}">
+            <input type="checkbox"
+                   name="categories"
+                   th:value="${g}"
+                   th:checked="${user.preferredCategories.contains(g)}">
+            <span th:text="${g}"></span>
+          </label>
+        </div>
+        <button class="btn">Save Preferences</button>
+      </form>
+    </div>
+    </div>
+
+  </main>
+
+</div>
+
+</body>
+</html>

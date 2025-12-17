@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<body>
+<div th:fragment="topbar">
+
+  <div class="top-bar">
+    <div></div> <!-- keeps spacing consistent with dashboard -->
+
+    <div class="user-info">
+      <span class="username" sec:authentication="name"></span>
+
+      <form method="post" action="/logout" style="margin:0;">
+        <button class="logout-btn" type="submit">
+          Logout
+        </button>
+      </form>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
