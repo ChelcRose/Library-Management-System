@@ -35,6 +35,49 @@ public class AdminController {
         return "redirect:/admin/users";
     }
 
+    @PostMapping("/users/{id}/role")
+    public String changeUserRole(
+            @PathVariable String id,
+            @RequestParam Role role) {
+
+        User oldUser = users.findById(id)
+                .orElseThrow(() -> new IllegalStateException("User not found"));
+
+        if ("admin".equalsIgnoreCase(oldUser.getUsername())) {
+            return "redirect:/admin/users";
+        }
+
+        users.delete(oldUser);
+
+        User newUser;
+
+        switch (role) {
+            case ADMIN -> newUser = new Admin(
+                    oldUser.getUserId(),
+                    oldUser.getName(),
+                    oldUser.getUsername(),
+                    oldUser.getPassword()
+            );
+            case LIBRARIAN -> newUser = new Librarian(
+                    oldUser.getUserId(),
+                    oldUser.getName(),
+                    oldUser.getUsername(),
+                    oldUser.getPassword()
+            );
+            default -> newUser = new Member(
+                    oldUser.getUserId(),
+                    oldUser.getName(),
+                    oldUser.getUsername(),
+                    oldUser.getPassword()
+            );
+        }
+
+        users.save(newUser);
+        return "redirect:/admin/users";
+    }
+
+
+
     @PostMapping("/users/create")
     public String createUser(@RequestParam String name,
                              @RequestParam String username,

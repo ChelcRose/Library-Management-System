@@ -586,7 +586,7 @@
                 <span th:text="${fine}"></span>
             </div>
 
-            <div class="stats-grid">
+            <div class="stats-grid" sec:authorize="hasRole('MEMBER')">
                 <a href="/dashboard?filter=all" style="text-decoration:none">
                 <div class="stat-card purple">
                     <div class="stat-icon" aria-hidden="true">
@@ -631,7 +631,7 @@
                             <path d="M10 18h4"></path>
                         </svg>
                     </div>
-
+                    <div sec:authorize="hasRole('MEMBER')" class="card">
                     <div class="stat-info" style="flex-direction:column; align-items:flex-start">
                         <p>Sort by Genre</p>
 
@@ -649,6 +649,7 @@
 
                             </select>
                         </form>
+                    </div>
                     </div>
                 </div>
 

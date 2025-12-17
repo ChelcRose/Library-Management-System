@@ -287,11 +287,27 @@
           <td th:text="${u.name}"></td>
           <td th:text="${u.username}"></td>
           <td>
-                            <span class="role-badge"
-                                  th:text="${u.role}"
-                                  th:classappend="' ' + ${u.role}">
-                            </span>
+            <form th:action="@{'/admin/users/' + ${u.userId} + '/role'}"
+                  method="post"
+                  style="display:flex; gap:8px; align-items:center">
+
+              <select name="role"
+                      th:disabled="${u.username == 'admin'}"
+                      style="padding:6px 10px; border-radius:8px; cursor: pointer">
+                <option value="ADMIN" th:selected="${u.role.name() == 'ADMIN'}" >Admin</option>
+                <option value="LIBRARIAN" th:selected="${u.role.name() == 'LIBRARIAN'}" >Librarian</option>
+                <option value="MEMBER" th:selected="${u.role.name() == 'MEMBER'}">Member</option>
+              </select>
+
+              <button type="submit"
+                      class="delete-btn"
+                      style="background:#e0e7ff;color:#4338ca"
+                      th:disabled="${u.username == 'admin'}">
+                Update
+              </button>
+            </form>
           </td>
+
           <td>
             <form th:action="@{'/admin/users/' + ${u.userId} + '/delete'}"
                   method="post">
@@ -301,6 +317,7 @@
               </button>
             </form>
           </td>
+
         </tr>
         </tbody>
       </table>
