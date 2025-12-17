@@ -302,3 +302,9 @@ Caused by: org.h2.mvstore.MVStoreException: The file is locked: /Users/chelsearo
 	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:291)
 	... 58 more
+2025-12-17 23:43:27.616783+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "SYNOPSIS CHARACTER VARYING(255)": "'Adaptation of the first of J.K. Rowling''s popular children''s novels about Har... (484)"; SQL statement:
+update book set author=?,available_copies=?,category=?,cover_url=?,synopsis=?,title=?,total_copies=? where id=? [22001-240]
+2025-12-17 23:52:33.430224+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "SYNOPSIS CHARACTER VARYING(255)": "'Hazel Grace Lancaster (Shailene Woodley), a 16-year-old cancer patient, meets a... (484)"; SQL statement:
+update book set author=?,available_copies=?,category=?,cover_url=?,synopsis=?,title=?,total_copies=? where id=? [22001-240]

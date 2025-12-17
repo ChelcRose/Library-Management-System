@@ -1,15 +1,18 @@
 package com.usc.libraryms.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
+import jakarta.persistence.*;
 
 @Entity
 public class Book {
 
     @Id
     private String id;
+
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String synopsis;
+
     private String title;
     private String author;
     private String category;
@@ -44,6 +47,7 @@ public class Book {
 
     /* ========= SETTERS (REQUIRED FOR FORMS) ========= */
     public void setId(String id) { this.id = id; }
+    public void setSynopsis(String synopsis) { this.synopsis = synopsis; }
     public void setCoverUrl(String coverUrl) { this.coverUrl = coverUrl; }
     public void setTitle(String title) { this.title = title; }
     public void setAuthor(String author) { this.author = author; }

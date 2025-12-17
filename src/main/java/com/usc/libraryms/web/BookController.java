@@ -69,14 +69,14 @@ public class BookController {
                              @RequestParam String title,
                              @RequestParam String author,
                              @RequestParam String category,
-                             @RequestParam int totalCopies) {
+                             @RequestParam int totalCopies,
+                             @RequestParam(required = false) String synopsis) {
 
         Book book = library.allBooks().stream()
                 .filter(b -> b.getId().equals(id))
                 .findFirst()
                 .orElseThrow();
 
-        // preserve borrowed copies
         int borrowed = book.getTotalCopies() - book.getAvailableCopies();
 
         book.setTitle(title);
@@ -85,9 +85,12 @@ public class BookController {
         book.setTotalCopies(totalCopies);
         book.setAvailableCopies(Math.max(0, totalCopies - borrowed));
 
-        library.addBook(book); // save/update
+        book.setSynopsis(synopsis);
+
+        library.addBook(book);
         return "redirect:/books";
     }
+
 
     /* ================= DELETE BOOK ================= */
 
