@@ -590,7 +590,7 @@
                     </button>
                 </form>
 
-                <div class="gallery-wrapper">
+    <div class="gallery-wrapper">
                 <div class="gallery">
                     <div class="book-card" th:each="b : ${books}">
 
@@ -622,7 +622,79 @@
 
                     </div>
                 </div>
+    </div>
+
+                <div th:if="${totalPages > 1}"
+                     style="display:flex; justify-content:center; gap:10px; margin-top:30px;">
+
+                    <!-- Previous -->
+                    <a th:if="${currentPage > 0}"
+                       th:href="@{/dashboard(
+            page=${currentPage - 1},
+            filter=${filter},
+            q=${q},
+            genre=${selectedGenre}
+       )}"
+                       style="
+            padding:10px 16px;
+            border-radius:10px;
+            background:#f3f0ff;
+            color:#6b21a8;
+            font-weight:600;
+            text-decoration:none;
+            box-shadow:0 2px 8px rgba(0,0,0,0.06);
+            transition:transform 0.2s;
+       "
+                       onmouseover="this.style.transform='translateY(-2px)'"
+                       onmouseout="this.style.transform='translateY(0)'">
+                        Prev
+                    </a>
+
+                    <!-- Page numbers -->
+                    <a th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
+                       th:href="@{/dashboard(
+            page=${i},
+            filter=${filter},
+            q=${q},
+            genre=${selectedGenre}
+       )}"
+                       th:text="${i + 1}"
+                       th:style="
+            ${i == currentPage} ?
+            'padding:10px 16px;border-radius:10px;background:linear-gradient(135deg,#a78bfa,#8b5cf6);color:#fff;font-weight:600;text-decoration:none;box-shadow:0 6px 18px rgba(139,92,246,0.35);pointer-events:none;'
+            :
+            'padding:10px 16px;border-radius:10px;background:#f3f0ff;color:#6b21a8;font-weight:600;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,0.06);transition:transform 0.2s;'
+       "
+                       onmouseover="this.style.transform='translateY(-2px)'"
+                       onmouseout="this.style.transform='translateY(0)'">
+                    </a>
+
+                    <!-- Next -->
+                    <a th:if="${currentPage + 1 < totalPages}"
+                       th:href="@{/dashboard(
+            page=${currentPage + 1},
+            filter=${filter},
+            q=${q},
+            genre=${selectedGenre}
+       )}"
+                       style="
+            padding:10px 16px;
+            border-radius:10px;
+            background:#f3f0ff;
+            color:#6b21a8;
+            font-weight:600;
+            text-decoration:none;
+            box-shadow:0 2px 8px rgba(0,0,0,0.06);
+            transition:transform 0.2s;
+       "
+                       onmouseover="this.style.transform='translateY(-2px)'"
+                       onmouseout="this.style.transform='translateY(0)'">
+                        Next
+                    </a>
+
                 </div>
+
+
             </div>
 
             <div sec:authorize="hasRole('LIBRARIAN')" class="card">
@@ -646,7 +718,7 @@
 
     </main>
 
-</div>
+    </div>
 
 <script>
     function toggleDetails(img) {

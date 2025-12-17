@@ -415,7 +415,16 @@
                 <input type="file" name="coverFile" required>
                 <input th:field="*{title}" placeholder="Title" required style="padding: 16px 20px; border: 1.5px solid #e5e7eb; border-radius: 10px">
                 <input th:field="*{author}" placeholder="Author" required style="padding: 16px 20px; border: 1.5px solid #e5e7eb; border-radius: 10px">
-                <input th:field="*{category}" placeholder="Category" required style="padding: 16px 20px; border: 1.5px solid #e5e7eb; border-radius: 10px">
+                <select th:field="*{category}" required
+                        style="padding:16px 20px; border:1.5px solid #e5e7eb; border-radius:10px; background:#fff;">
+                    <option value="" disabled selected>Select Category</option>
+
+                    <option th:each="c : ${categories}"
+                            th:value="${c}"
+                            th:text="${c}">
+                    </option>
+                </select>
+
                 <input th:field="*{totalCopies}" type="number" min="1" placeholder="Total Copies" required>
                 <button type="submit">Add Book</button>
             </form>

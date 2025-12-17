@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import java.util.Collections;
 
 import java.util.List;
 
@@ -30,6 +31,7 @@ public class DashboardController {
             @RequestParam(required = false) String q,
             @RequestParam(required = false) String filter,
             @RequestParam(required = false) String genre,
+            @RequestParam(defaultValue = "0") int page,
             Authentication auth,
             Model model) {
 
@@ -95,6 +97,19 @@ public class DashboardController {
             sectionTitle = genre + " Books";
         }
 
+        int pageSize = 12;
+        int totalBooks = allBooks.size();
+        int totalPages = (int) Math.ceil((double) totalBooks / pageSize);
+
+        int fromIndex = page * pageSize;
+        int toIndex = Math.min(fromIndex + pageSize, totalBooks);
+
+        if (fromIndex > totalBooks) {
+            allBooks = Collections.emptyList();
+        } else {
+            allBooks = allBooks.subList(fromIndex, toIndex);
+        }
+
 
         /* ================= MODEL ATTRIBUTES ================= */
         model.addAttribute("availableBooks",
@@ -108,8 +123,8 @@ public class DashboardController {
         model.addAttribute("books", allBooks);
         model.addAttribute("q", q == null ? "" : q);
         model.addAttribute("filter", filter == null ? "recommended" : filter);
-
-        // ✅ NEW (for cards + title)
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", totalPages);
         model.addAttribute("sectionTitle", sectionTitle);
         model.addAttribute("selectedGenre", genre == null ? "" : genre);
         model.addAttribute("allBooks", library.allBooks().size());
@@ -121,4 +136,5 @@ public class DashboardController {
 
         return "dashboard";
     }
+
 }

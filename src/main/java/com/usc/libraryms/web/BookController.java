@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.nio.file.*;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/books")
@@ -26,6 +27,11 @@ public class BookController {
         model.addAttribute("books", library.search(q));
         model.addAttribute("q", q == null ? "" : q);
         model.addAttribute("newBook", new Book());
+        model.addAttribute("categories", Set.of(
+                "Fiction", "Non-Fiction", "Science", "Technology",
+                "History", "Fantasy", "Romance", "Mystery",
+                "Children's Literature", "Adventure", "Young Adult"
+        ));
         return "books";
     }
 
