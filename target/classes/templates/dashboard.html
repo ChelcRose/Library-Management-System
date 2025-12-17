@@ -534,22 +534,7 @@
                 </div>
                 </a>
 
-                <a href="/dashboard?filter=available" style="text-decoration:none">
-                <div class="stat-card pink">
-                    <div class="stat-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 11a4 4 0 0 1 0-8"></path></svg>
-                    </div>
-                    <div class="stat-info">
-                        <p>
-                            Available Books
-                            <span th:text="'(' + ${availableBooks} + ')'"
-                                  style="font-size:14px; color:#6b7280; font-weight:400;">
-        </span>
-                        </p>
-                    </div>
-
-                </div>
-                </a>
+                <a th:href="${filter == 'unavailable'} ? '/dashboard?filter=available' : '/dashboard?filter=unavailable'" style="text-decoration:none"> <div class="stat-card pink"> <div class="stat-icon" aria-hidden="true"> <svg viewBox="0 0 24 24"> <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path> <circle cx="9" cy="7" r="4"></circle> <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path> <path d="M16 11a4 4 0 0 1 0-8"></path> </svg> </div> <div class="stat-info"> <p th:text="${filter == 'unavailable'} ? 'Available Books' : 'Unavailable Books'"></p> <span th:text="${filter == 'unavailable'} ? '(' + ${availableBooks} + ')' : '(' + ${borrowedBooks} + ')'" style="font-size:14px; color:#6b7280; font-weight:400;"> </span> </div> </div> </a>
 
                 <div class="stat-card blue" sec:authorize="hasRole('MEMBER')">
                     <div class="stat-icon" aria-hidden="true">

@@ -76,17 +76,14 @@ public class DashboardController {
                         .toList();
                 sectionTitle = "Available Books";
             }
-        }
 
-        /* ================= NON-MEMBER USERS (UNCHANGED LOGIC) ================= */
-
-        if (!(currentUser instanceof Member)) {
-            if ("available".equals(filter)) {
-                allBooks = allBooks.stream()
-                        .filter(Book::isAvailable)
+            if ("unavailable".equals(filter)) {
+                allBooks = library.search(q).stream()
+                        .filter(b -> !b.isAvailable())
                         .toList();
-                sectionTitle = "Available Books";
+                sectionTitle = "Unavailable Books";
             }
+
         }
 
         if (genre != null && !genre.isBlank()) {

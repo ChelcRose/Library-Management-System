@@ -34,7 +34,6 @@ public class Book {
         this.synopsis = synopsis;
     }
 
-    /* ========= GETTERS ========= */
 
     public String getId() { return id; }
     public String getSynopsis() { return synopsis; }
@@ -45,7 +44,6 @@ public class Book {
     public int getTotalCopies() { return totalCopies; }
     public int getAvailableCopies() { return availableCopies; }
 
-    /* ========= SETTERS (REQUIRED FOR FORMS) ========= */
     public void setId(String id) { this.id = id; }
     public void setSynopsis(String synopsis) { this.synopsis = synopsis; }
     public void setCoverUrl(String coverUrl) { this.coverUrl = coverUrl; }
@@ -57,7 +55,6 @@ public class Book {
         this.availableCopies = availableCopies;
     }
 
-    /* ========= SAFETY INIT ========= */
     @PrePersist
     public void initAvailableCopies() {
         if (availableCopies == 0) {
@@ -65,7 +62,6 @@ public class Book {
         }
     }
 
-    /* ========= DOMAIN LOGIC ========= */
     public boolean isAvailable() {
         return availableCopies > 0;
     }

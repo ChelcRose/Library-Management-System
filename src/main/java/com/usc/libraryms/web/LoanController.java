@@ -21,7 +21,6 @@ public class LoanController {
         this.users = users;
     }
 
-    /* ================= VIEW LOANS (ADMIN / LIBRARIAN) ================= */
 
     @GetMapping
     public String loans(Model model) {
@@ -29,7 +28,6 @@ public class LoanController {
         return "loans";
     }
 
-    /* ================= BORROW (FROM LOANS PAGE - LIBRARIAN/ADMIN) ================= */
 
     @PostMapping("/borrow")
     public String borrow(@RequestParam String bookId,
@@ -39,8 +37,6 @@ public class LoanController {
                          RedirectAttributes redirectAttributes) {
 
         try {
-            // ✅ If memberId is provided (from loans page), use it
-            // ✅ Otherwise, use the logged-in user's ID (from dashboard)
             if (memberId == null || memberId.isBlank()) {
                 String username = auth.getName();
                 memberId = users.findByUsername(username)
@@ -55,13 +51,10 @@ public class LoanController {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
         }
 
-        // ✅ Redirect based on where the request came from
         String referer = redirectAttributes.getFlashAttributes().containsKey("fromLoans") ? "/loans" : "/dashboard";
         return "redirect:" + referer;
     }
 
-
-    /* ================= RETURN ================= */
 
     @PostMapping("/return")
     public String returnLoan(@RequestParam String loanId,
