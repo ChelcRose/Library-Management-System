@@ -517,6 +517,22 @@
 
             <!-- SEARCH & FILTER -->
 
+
+            <form method="post"
+                  action="/loans/reset"
+                  sec:authorize="hasRole('ADMIN')"
+                  onsubmit="return confirm(
+        'WARNING: This will delete ALL loans and restore all book availability. Continue?'
+      );"
+                  style="margin-bottom:20px;">
+
+                <button type="submit"
+                        class="logout-btn"
+                        style="background:#fee2e2;color:#991b1b;">
+                    Reset All Loans
+                </button>
+            </form>
+
             <div class="search-filter-bar">
                 <input type="text"
                        id="searchInput"

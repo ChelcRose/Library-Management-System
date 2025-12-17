@@ -8,6 +8,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+
 
 import java.util.Set;
 
@@ -47,6 +51,8 @@ public class ProfileController {
     public String changePassword(@RequestParam String oldPassword,
                                  @RequestParam String newPassword,
                                  Authentication auth,
+                                 HttpServletRequest request,
+                                 HttpServletResponse response,
                                  Model model) {
 
         User user = users.findByUsername(auth.getName())
@@ -61,8 +67,11 @@ public class ProfileController {
         user.setPassword(encoder.encode(newPassword));
         users.save(user);
 
-        return "redirect:/profile?passwordUpdated";
+        new SecurityContextLogoutHandler().logout(request, response, auth);
+
+        return "redirect:/login?passwordChanged";
     }
+
 
 
     /* ================= MEMBER PREFERENCES ================= */
