@@ -29,20 +29,24 @@ public class LoanController {
         return "loans";
     }
 
-    /* ================= BORROW ================= */
+    /* ================= BORROW (FROM LOANS PAGE - LIBRARIAN/ADMIN) ================= */
 
     @PostMapping("/borrow")
     public String borrow(@RequestParam String bookId,
+                         @RequestParam(required = false) String memberId,  // ✅ Now optional
                          @RequestParam int days,
                          Authentication auth,
                          RedirectAttributes redirectAttributes) {
 
         try {
-            // ✅ get logged-in user
-            String username = auth.getName();
-            String memberId = users.findByUsername(username)
-                    .orElseThrow()
-                    .getUserId();
+            // ✅ If memberId is provided (from loans page), use it
+            // ✅ Otherwise, use the logged-in user's ID (from dashboard)
+            if (memberId == null || memberId.isBlank()) {
+                String username = auth.getName();
+                memberId = users.findByUsername(username)
+                        .orElseThrow()
+                        .getUserId();
+            }
 
             library.borrow(bookId, memberId, days);
             redirectAttributes.addFlashAttribute("success", "Book borrowed successfully!");
@@ -51,7 +55,9 @@ public class LoanController {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
         }
 
-        return "redirect:/dashboard";
+        // ✅ Redirect based on where the request came from
+        String referer = redirectAttributes.getFlashAttributes().containsKey("fromLoans") ? "/loans" : "/dashboard";
+        return "redirect:" + referer;
     }
 
 
