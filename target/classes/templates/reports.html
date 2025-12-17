@@ -264,11 +264,29 @@
       <h2>Reports</h2>
       <p class="subtitle">Library overview</p>
 
-      <div style="display:flex; gap:10px; margin-bottom:20px;">
-        <a href="/reports?type=borrowed" class="btn">Borrowed</a>
-        <a href="/reports?type=available" class="btn">Available</a>
-        <a href="/reports?type=unavailable" class="btn">Unavailable</a>
+      <div class="report-tabs">
+        <a th:href="@{/reports(type='borrowed')}"
+           th:classappend="${type == 'borrowed'} ? ' active'">
+          Borrowed
+        </a>
+
+        <a th:href="@{/reports(type='available')}"
+           th:classappend="${type == 'available'} ? ' active'">
+          Available
+        </a>
+
+        <a th:href="@{/reports(type='unavailable')}"
+           th:classappend="${type == 'unavailable'} ? ' active'">
+          Unavailable
+        </a>
+
+        <a th:href="@{/reports(type='completed')}"
+           th:classappend="${type == 'completed'} ? ' active'">
+          Completed
+        </a>
+
       </div>
+
 
       <!-- ================= BORROWED ================= -->
       <table class="book-table" th:if="${type == 'borrowed'}">
@@ -293,8 +311,8 @@
         </tbody>
       </table>
 
-      <!-- ================= AVAILABLE / UNAVAILABLE ================= -->
-      <table class="book-table" th:unless="${type == 'borrowed'}">
+      <!-- ================= AVAILABLE ================= -->
+      <table class="book-table" th:if="${type == 'available'}">
         <thead>
         <tr>
           <th>ID</th>
@@ -311,10 +329,60 @@
           <td th:text="${b.availableCopies + '/' + b.totalCopies}"></td>
         </tr>
         <tr th:if="${#lists.isEmpty(books)}">
-          <td colspan="4" class="empty">No books found</td>
+          <td colspan="4" class="empty">No available books</td>
         </tr>
         </tbody>
       </table>
+
+      <!-- ================= UNAVAILABLE ================= -->
+      <table class="book-table" th:if="${type == 'unavailable'}">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Available</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="b : ${books}">
+          <td th:text="${b.id}"></td>
+          <td th:text="${b.title}"></td>
+          <td th:text="${b.author}"></td>
+          <td th:text="${b.availableCopies + '/' + b.totalCopies}"></td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(books)}">
+          <td colspan="4" class="empty">No unavailable books</td>
+        </tr>
+        </tbody>
+      </table>
+
+      <!-- ================= COMPLETED ================= -->
+      <table class="book-table" th:if="${type == 'completed'}">
+        <thead>
+        <tr>
+          <th>Loan ID</th>
+          <th>Book ID</th>
+          <th>Member ID</th>
+          <th>Returned Date</th>
+          <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="l : ${loans}">
+          <td th:text="${l.loanId}"></td>
+          <td th:text="${l.bookId}"></td>
+          <td th:text="${l.memberId}"></td>
+          <td th:text="${#temporals.format(l.returnDate,'MMM dd, yyyy')}"></td>
+          <td><span class="status status-returned">Completed</span></td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(loans)}">
+          <td colspan="5" class="empty">No completed loans</td>
+        </tr>
+        </tbody>
+      </table>
+
+
 
 
 

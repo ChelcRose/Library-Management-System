@@ -40,6 +40,14 @@ public class ReportController {
                             .toList()
             );
         }
+
+        else if ("completed".equals(type)) {
+            model.addAttribute(
+                    "loans",
+                    library.allLoans().stream()
+                            .filter(l -> l.isReturned())
+                            .toList()
+            ); }
         else if ("unavailable".equals(type)) {
             model.addAttribute(
                     "books",
