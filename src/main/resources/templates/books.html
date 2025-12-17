@@ -293,6 +293,37 @@
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
             transition: left 0.5s;
         }
+                .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+               .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+                .username {
+            color: #8b5cf6;
+            font-weight: 600;
+        }
+        .logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: transform 0.2s;
+}
+.logout-btn:hover {
+    transform: translateY(-2px);
+}
         
         .search-bar button:hover::before {
             left: 100%;
@@ -371,6 +402,8 @@
     <div th:replace="fragments/sidebar :: sidebar('books')"></div>
 
     <main class="main-content">
+        <div th:replace="fragments/topbar :: topbar"></div>
+
 
         <div class="page-header">
             <h2>Manage Books</h2>

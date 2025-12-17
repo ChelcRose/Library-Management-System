@@ -7,9 +7,8 @@
     <title>Loans | LIBRA</title>
     <link rel="icon" type="image/png" href="/img/LIBRALOGO.png">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        /* === RESET === */
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
@@ -28,9 +27,6 @@
         .logo{display:flex;align-items:center;gap:12px;margin-bottom:10px}
         .logo-icon{
             width:40px;height:40px;
-        }
-        .logo-icon img{
-            width:100%;height:100%;object-fit:contain;
         }
 
         .logo-icon img {
@@ -57,7 +53,7 @@
 
         .nav-menu { list-style: none; }
 
-            .nav-item a {
+        .nav-item a {
             display: flex;
             align-items: center;
             gap: 12px;
@@ -67,6 +63,7 @@
             border-radius: 10px;
             transition: all 0.3s;
         }
+
 
         .nav-item a:hover,
         .nav-item a.active {
@@ -102,12 +99,12 @@
                 overflow-y: auto;
             }
 
-            .top-bar {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 10px;
-            }
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
 
             .user-info {
                 display: flex;
@@ -120,19 +117,19 @@
                 font-weight: 600;
             }
 
-            .logout-btn {
-                display: flex;
-                align-items: center;
-                gap: 8px;
-                padding: 10px 20px;
-                background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
-                color: #fff;
-                border: none;
-                border-radius: 10px;
-                cursor: pointer;
-                font-size: 14px;
-                transition: transform 0.2s;
-            }
+.logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: transform 0.2s;
+}
 
             .logout-btn:hover {
                 transform: translateY(-2px);
@@ -389,6 +386,27 @@
             color: #065f46;
         }
 
+            .nav-icon svg{
+             width: 22px;
+            height: 22px;
+            stroke: #6b21a8;
+            fill: none;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+             .nav-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 10px;
+            background: #f3f0ff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
         .btn-action {
             padding: 12px 24px;
             border-radius: 10px;
@@ -469,19 +487,18 @@
     <!-- MAIN -->
     <main class="main-content">
 
-        <div class="top-bar">
-            <span class="username" sec:authentication="name"></span>
-            <form method="post" action="/logout" style="margin: 0;">
-                <button class="logout-btn" type="submit">Logout</button>
-            </form>
-        </div>
+        <div th:replace="fragments/topbar :: topbar"></div>
+
 
         <div class="page-header">
             <h2>Borrow / Return</h2>
         </div>
 
         <!-- BORROW -->
-        <div class="card" style="max-width:600px;">
+
+
+        <div class="card" style="background:#fff;padding:30px;border-radius:16px;
+        margin: 30px auto;box-shadow:0 4px 15px rgba(0,0,0,.06)">
             <h3 class="section-title">Borrow Book</h3>
             <form method="post" action="/loans/borrow" class="loan-form">
                 <input name="bookId" placeholder="Book ID" required>
