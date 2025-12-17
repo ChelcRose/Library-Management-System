@@ -226,6 +226,10 @@
             transform: translateY(0);
         }
 
+.add-book-form textarea {
+    grid-column: 1 / -1;
+}
+
         /* ===== IMPROVED SEARCH BAR ===== */
         .search-bar {
             display: flex;
@@ -425,7 +429,34 @@
                     </option>
                 </select>
 
+
                 <input th:field="*{totalCopies}" type="number" min="1" placeholder="Total Copies" required>
+                <textarea th:field="*{synopsis}"
+                          placeholder="Synopsis"
+                          rows="4"
+                          style="
+            grid-column: 1 / -1;
+
+            /* MATCH INPUT EXACTLY */
+            padding:16px 20px;
+            border:1.5px solid #e5e7eb;
+            border-radius:10px;
+            background: rgba(255, 255, 255, 0.9);
+
+            font-size:15px;
+            font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            line-height:1.4;
+            color:#374151;
+
+            resize:vertical;
+            outline:none;
+            transition: all 0.3s ease;
+          "
+                          onfocus="this.style.borderColor='#a855f7'; this.style.boxShadow='0 0 0 4px rgba(168,85,247,0.08)'; this.style.background='white'"
+                          onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='rgba(255,255,255,0.9)'">
+</textarea>
+
+
                 <button type="submit">Add Book</button>
             </form>
         </div>

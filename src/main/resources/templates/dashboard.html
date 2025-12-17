@@ -458,6 +458,16 @@
                 grid-template-columns: 1fr;
             }
         }
+        .borrow-btn.cancel {
+    background: #fff;
+    color: #6b21a8;
+    border: 1.5px solid #e5e7eb;
+}
+
+.borrow-btn.cancel:hover {
+    background: #f9fafb;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
     </style>
 </head>
 <body>
@@ -608,15 +618,31 @@
                                 <span th:text="${b.availableCopies + '/' + b.totalCopies}"></span>
                             </p>
 
-                            <form method="post" action="/loans/borrow">
+
                                 <input type="hidden" name="bookId" th:value="${b.id}">
                                 <input type="hidden" name="days" value="7">
 
-                                <button class="borrow-btn"
-                                        th:disabled="${b.availableCopies == 0}">
-                                    Borrow
-                                </button>
-                            </form>
+                            <button type="button"
+                                    class="borrow-btn"
+                                    th:disabled="${b.availableCopies == 0}"
+                                    style="width:auto; cursor:pointer; height:44px;"
+                                    th:attr="
+            data-id=${b.id},
+            data-title=${b.title},
+            data-author=${b.author},
+            data-category=${b.category},
+            data-synopsis=${b.synopsis}
+        "
+                                    onclick="openBorrowModal(
+            this.dataset.id,
+            this.dataset.title,
+            this.dataset.author,
+            this.dataset.category,
+            this.dataset.synopsis
+        )">
+                                Borrow
+                            </button>
+
 
                         </div>
 
@@ -719,8 +745,99 @@
     </main>
 
     </div>
+<div id="borrowModal"
+     style="display:none; position:fixed; inset:0;
+            background:rgba(0,0,0,0.45);
+            align-items:center; justify-content:center;
+            z-index:9999;">
+
+    <div style="background:#fff; width:520px; max-width:90%;
+                border-radius:16px; padding:30px;
+                box-shadow:0 20px 40px rgba(0,0,0,0.25);">
+
+        <h3 id="modalTitle" style="margin-bottom:8px;"></h3>
+        <p id="modalAuthor" style="color:#6b7280;"></p>
+        <p id="modalCategory" style="color:#8b5cf6; margin-bottom:15px;"></p>
+
+        <p id="modalSynopsis"
+           style="font-size:14px; line-height:1.6; margin-bottom:20px;">
+        </p>
+
+        <div style="background:#f9fafb; padding:15px;
+                    border-radius:12px; margin-bottom:20px;">
+            <strong>Borrowing Policy</strong>
+            <p style="font-size:14px; margin-top:8px;">
+                By proceeding with this reservation, you acknowledge that
+                library materials are entrusted to your care.
+                Borrowed books must be returned within the designated loan
+                period. Items returned beyond their due date may incur
+                corresponding fines in accordance with library regulations.
+                Repeated or prolonged delays may affect future borrowing
+                privileges.
+            </p>
+
+            <label style="display:flex; gap:8px; margin-top:12px;">
+                <input type="checkbox" id="policyCheck">
+                <span style="font-size:14px;">
+                    I have read and agree to the borrowing policy.
+                </span>
+            </label>
+        </div>
+
+        <form method="post" action="/loans/borrow"
+              onsubmit="return confirmBorrow();">
+
+            <input type="hidden" name="bookId" id="modalBookId">
+            <input type="hidden" name="days" value="7">
+
+            <div style="display:flex; gap:12px; justify-content:flex-end;">
+                <button type="button"
+                        class="borrow-btn cancel"
+                        onclick="closeBorrowModal()"
+                        style="width:auto;">
+                    Cancel
+                </button>
+
+                <button type="submit"
+                        class="borrow-btn"
+                        style="width:auto;">
+                    Confirm Borrow
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
 
 <script>
+
+    function openBorrowModal(id, title, author, category, synopsis) {
+    document.getElementById("modalBookId").value = id;
+    document.getElementById("modalTitle").textContent = title;
+    document.getElementById("modalAuthor").textContent = "by " + author;
+    document.getElementById("modalCategory").textContent = category;
+
+    document.getElementById("modalSynopsis").textContent =
+        synopsis && synopsis !== 'null'
+            ? synopsis
+            : "Synopsis not available yet.";
+
+    document.getElementById("policyCheck").checked = false;
+    document.getElementById("borrowModal").style.display = "flex";
+}
+
+function closeBorrowModal() {
+    document.getElementById("borrowModal").style.display = "none";
+}
+
+function confirmBorrow() {
+    if (!document.getElementById("policyCheck").checked) {
+        alert("Please agree to the borrowing policy before proceeding.");
+        return false;
+    }
+    return true;
+}
+
     function toggleDetails(img) {
         const card = img.closest(".book-card");
         const targetDetails = card.querySelector(".book-details");

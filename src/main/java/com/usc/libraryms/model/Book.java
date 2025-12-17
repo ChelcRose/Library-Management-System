@@ -9,7 +9,7 @@ public class Book {
 
     @Id
     private String id;
-
+    private String synopsis;
     private String title;
     private String author;
     private String category;
@@ -21,18 +21,20 @@ public class Book {
 
     public Book() {}
 
-    public Book(String id, String title, String author, String category, int totalCopies) {
+    public Book(String id, String title, String author, String category, int totalCopies, String synopsis) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.category = category;
         this.totalCopies = totalCopies;
         this.availableCopies = totalCopies;
+        this.synopsis = synopsis;
     }
 
     /* ========= GETTERS ========= */
 
     public String getId() { return id; }
+    public String getSynopsis() { return synopsis; }
     public String getCoverUrl() { return coverUrl; }
     public String getTitle() { return title; }
     public String getAuthor() { return author; }
